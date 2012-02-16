@@ -1,18 +1,11 @@
-#@+leo-ver=5-thin
-#@+node:cloudaice.20120216102454.1167: * @file /home/cloudaice/pyrepo/jwcsite/stu_service/views.py
-#@@language python
-#@@tabwidth -4
-#@+others
-#@+node:cloudaice.20120216102454.1168: ** views declarations
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from jwcsite.stu_service.models import js_status
-from jwcsite.stu_service.forms import JsForm
+from jwcsite.stu_service.forms import JsForm,feedbackarea
 import time
 
-#@+node:cloudaice.20120216102454.1169: ** home_page
 def home_page(request):
     if request.method == 'POST':
         form = JsForm(request.POST)
@@ -42,11 +35,12 @@ def home_page(request):
                     new_room_tables.append((room_tables[key],room_tables[key+1],room_tables[key+2]))
             return render_to_response('home_page.html',{'form':form,'room_tables':new_room_tables})
             #return HttpResponse('%s %s' %(s,times))
-            
-
     else:
         form = JsForm()
     return render_to_response('home_page.html',{'form':form})
 
-#@-others
-#@-leo
+def feedback(request):
+    if request.method == 'POST':
+        form = feedbackarea(request.POST)
+
+

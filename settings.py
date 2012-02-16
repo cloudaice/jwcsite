@@ -1,9 +1,3 @@
-#@+leo-ver=5-thin
-#@+node:cloudaice.20120216102454.1117: * @file /home/cloudaice/pyrepo/jwcsite/settings.py
-#@@language python
-#@@tabwidth -4
-#@+others
-#@+node:cloudaice.20120216102454.1118: ** settings declarations
 # -*- coding: utf-8 -*-
 # Django settings for jwcsite project.
 import os
@@ -159,5 +153,3 @@ LOGGING = {
     }
 }
 APPEND_SLASH=True
-#@-others
-#@-leo

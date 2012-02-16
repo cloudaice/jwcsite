@@ -1,9 +1,3 @@
-#@+leo-ver=5-thin
-#@+node:cloudaice.20120216102454.1139: * @file /home/cloudaice/pyrepo/jwcsite/stu_service/jwc.py
-#@@language python
-#@@tabwidth -4
-#@+others
-#@+node:cloudaice.20120216102454.1140: ** jwc declarations
 # -*- coding: utf-8 -*-
 from HTMLParser import HTMLParser
 from htmlentitydefs import entitydefs
@@ -14,23 +8,18 @@ import re
 import sys
 
 
-#@+node:cloudaice.20120216102454.1141: ** class jwc
 class jwc():
-    #@+others
-    #@+node:cloudaice.20120216102454.1142: *3* __init__
     def __init__(self):
         self.data=''
         self.parameter={}
         self.url_login=''
         self.typename=''
 
-    #@+node:cloudaice.20120216102454.1143: *3* set_coolie
     def set_coolie():
         cj = cookielib.LWPCookieJar()
         opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
         urllib2.install_opener(opener)
 
-    #@+node:cloudaice.20120216102454.1144: *3* set_kb
     def set_kb(self,bj):
         self.typename='kb'
         self.parameter = {
@@ -39,7 +28,6 @@ class jwc():
                 }
         self.url_login = "http://xscj.hit.edu.cn/HitJwgl/XS/kfxqkb.asp"
 
-    #@+node:cloudaice.20120216102454.1145: *3* set_js
     def set_js(self,week,area):
         self.typename='js'
         self.parameter = {
@@ -51,7 +39,6 @@ class jwc():
         self.url_login = "http://xscj.hit.edu.cn/HitJwgl/XS/kfjscx_all.asp"
 
 
-    #@+node:cloudaice.20120216102454.1146: *3* get_html
     def get_html(self):
         req = urllib2.Request(
                 self.url_login,
@@ -62,7 +49,6 @@ class jwc():
         data=data.decode('gb2312').encode('utf-8')
         return data
 
-    #@+node:cloudaice.20120216102454.1147: *3* view_data
     def view_data(self): 
         data = self.get_html()
         if self.typename=='kb':
@@ -70,18 +56,13 @@ class jwc():
         self.data=data
         return self.data
 
-    #@+node:cloudaice.20120216102454.1148: *3* into_file
     def into_file(self,filename):
         self.data=self.view_data()
         f = open(filename,'w')
         f.write(self.data)
 
 
-    #@-others
-#@+node:cloudaice.20120216102454.1149: ** class jsparser
 class jsparser(HTMLParser):
-    #@+others
-    #@+node:cloudaice.20120216102454.1150: *3* __init__
     def __init__(self):
         self.js_in=0    #记录一个<tr>中读取到哪一行
         self.js=[]    #存储教室名字的列表 
@@ -90,7 +71,6 @@ class jsparser(HTMLParser):
         self.js_data=''    #计算教室名字的中间量
         HTMLParser.__init__(self)    #初始化父类
 
-    #@+node:cloudaice.20120216102454.1151: *3* handle_starttag
     def handle_starttag(self,tag,attrs):  #读到开始标签
         if tag == 'td' and len(attrs) == 1:
             name,value = attrs[0]
@@ -102,12 +82,10 @@ class jsparser(HTMLParser):
                 self.js_in+=1
 
                     
-    #@+node:cloudaice.20120216102454.1152: *3* handle_data
     def handle_data(self,data):      #记录教室名字
         if self.js_in == 1:
             self.js_data+=data
             
-    #@+node:cloudaice.20120216102454.1153: *3* handle_endtag
     def handle_endtag(self,tag):      #读到结尾标签
         if tag == 'td' and self.js_in==1:   
             "判断是教室名字结尾标签,存储名字，并且清空中间变量self.js_data"
@@ -118,7 +96,6 @@ class jsparser(HTMLParser):
             self.js_in =0
             self.status.append(self.js_status)
             self.js_status=[]
-    #@+node:cloudaice.20120216102454.1154: *3* getresult
     '''
     用来处理html中的实体的值的，在这里没有什么用处
     def handle_entityref(self,name):
@@ -137,13 +114,11 @@ class jsparser(HTMLParser):
             sys.stdout.write("\n")
         print len(self.js)
 
-    #@+node:cloudaice.20120216102454.1155: *3* get_room
     def get_room(self):
         for key in range(len(self.js)):
             self.js[key]="".join(self.js[key].split())
         return self.js
 
-    #@+node:cloudaice.20120216102454.1156: *3* get_status
     def get_status(self):
         status=[]
         for key in range(len(self.js)):
@@ -151,7 +126,6 @@ class jsparser(HTMLParser):
         return status
         
 
-    #@+node:cloudaice.20120216102454.1157: *3* color_to_value
     def color_to_value(self,color):
         if color == '#FFFFFF':
             return '0'
@@ -160,8 +134,6 @@ class jsparser(HTMLParser):
         if color == "#FF0000":
             return '2'
 
-    #@-others
-#@-others
 if __name__ == '__main__':
     bj = '0903101'
     filename = 'kb.html'
@@ -176,4 +148,3 @@ if __name__ == '__main__':
 
 
 
-#@-leo

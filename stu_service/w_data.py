@@ -1,9 +1,3 @@
-#@+leo-ver=5-thin
-#@+node:cloudaice.20120216102454.1170: * @file /home/cloudaice/pyrepo/jwcsite/stu_service/w_data.py
-#@@language python
-#@@tabwidth -4
-#@+others
-#@+node:cloudaice.20120216102454.1171: ** w_data declarations
 #-*- coding: utf-8 -*-
 '''
 call this file can input the data into database
@@ -12,7 +6,6 @@ from jwc import *
 from jwcsite.stu_service.models import js_status
 from django.http import HttpResponse
 
-#@+node:cloudaice.20120216102454.1172: ** insertdata
 def insertdata(request):
     newpage = jwc()
     newpage.set_js('21','一校区')
@@ -31,5 +24,3 @@ def insertdata(request):
                     ).save()
     return  HttpResponse('data has insert')
 
-#@-others
-#@-leo
