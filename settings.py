@@ -1,6 +1,14 @@
+#@+leo-ver=5-thin
+#@+node:cloudaice.20120216102454.1117: * @file /home/cloudaice/pyrepo/jwcsite/settings.py
+#@@language python
+#@@tabwidth -4
+#@+others
+#@+node:cloudaice.20120216102454.1118: ** settings declarations
 # -*- coding: utf-8 -*-
 # Django settings for jwcsite project.
+import os
 
+HERE = os.path.dirname(__file__)
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -73,6 +81,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    HERE+STATIC_URL,
 )
 
 # List of finder classes that know how to find static files in
@@ -150,3 +159,5 @@ LOGGING = {
     }
 }
 APPEND_SLASH=True
+#@-others
+#@-leo

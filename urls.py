@@ -1,4 +1,11 @@
+#@+leo-ver=5-thin
+#@+node:cloudaice.20120216102454.1121: * @file /home/cloudaice/pyrepo/jwcsite/urls.py
+#@@language python
+#@@tabwidth -4
+#@+others
+#@+node:cloudaice.20120216102454.1122: ** urls declarations
 from django.conf.urls.defaults import patterns, include, url
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from jwcsite.stu_service import views
 from jwcsite.stu_service import w_data
 # Uncomment the next two lines to enable the admin:
@@ -18,3 +25,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
      url(r'^admin/', include(admin.site.urls)),
 )
+urlpatterns+=staticfiles_urlpatterns()
+#@-others
+#@-leo

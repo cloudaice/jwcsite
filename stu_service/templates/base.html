@@ -1,15 +1,48 @@
+<!--@+leo-ver=5-thin-->
+<!--@+node:cloudaice.20120216102454.1174: * @file /home/cloudaice/pyrepo/jwcsite/stu_service/templates/base.html-->
+<!--@@language xml-->
+<!--@@tabwidth -4-->
+<!--@+others-->
+<!--@+node:cloudaice.20120216102454.1175: ** base declarations-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--@+node:cloudaice.20120216102454.1176: ** html-->
 <html xmlns="http://www.w3.org/1999/xhtml">
+<!--@+others-->
+<!--@+node:cloudaice.20120216102454.1177: *3* head-->
 <head>
     <title>{% block title %}{% endblock %}</title>
     <meta http-equiv='Content-Type' content='text/html'; charset='utf-8'/>
     <meta http-equiv='Content-Language' content = 'zh-cn'/>
+    <meta name="keywords" content ="django.jwcsite"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/stu_service.css"/>
+    <script src"/static/js/jquery-1.7.1.min.js"></script>
 </head>
-<body>
+<!--@+node:cloudaice.20120216102454.1178: *3* body-->
+<body >
+<script type="text/javascript" src="/static/js/jquery-1.7.1.min.js"> // Window load event used just in case window height is dependant upon images 
+    $(window).bind("load", function() { var footerHeight = 0, footerTop = 0, $footer = $("#footer"); positionFooter();
+            //定义positionFooter function 
+            function positionFooter() { 
+            //取到div#footer高度 
+            footerHeight = $footer.height(); 
+            //div#footer离屏幕顶部的距离 
+            footerTop = ($(window).scrollTop()+$(window).height()-footerHeight)+"px"; 
+            /* DEBUGGING STUFF console.log("Document height: ", $(document.body).height()); console.log("Window height: ", $(window).height()); console.log("Window scroll: ", $(window).scrollTop()); console.log("Footer height: ", footerHeight); console.log("Footer top: ", footerTop); console.log("-----------") */ 
+            //如果页面内容高度小于屏幕高度，div#footer将绝对定位到屏幕底部，否则div#footer保留它的正常静态定位 
+            if ( ($(document.body).height()+footerHeight) < $(window).height()) { $footer.css({ position: "absolute" }).stop().animate({ top: footerTop }); } else { $footer.css({ position: "static" }); } } $(window).scroll(positionFooter).resize(positionFooter); }); </script>
     {% block content %}{% endblock %}
+    <!--@+others-->
+    <!--@+node:cloudaice.20120216102454.1179: *4* div-->
+    <div id = "footer" >
     {% block footer %}
     <hr>
-    <p>made by cloudaice</p>
+    <p align = "center" >made by 
+    <a href = "http://www.cloudaice.com">cloudaice</a></p>
     {% endblock %}
+    </div>
+    <!--@-others-->
 </body>
+<!--@-others-->
 </html>
+<!--@-others-->
+<!--@-leo-->

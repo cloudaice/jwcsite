@@ -1,3 +1,9 @@
+#@+leo-ver=5-thin
+#@+node:cloudaice.20120216102454.1115: * @file /home/cloudaice/pyrepo/jwcsite/manage.py
+#@@language python
+#@@tabwidth -4
+#@+others
+#@+node:cloudaice.20120216102454.1116: ** manage declarations
 #!/usr/bin/env python
 from django.core.management import execute_manager
 import imp
@@ -12,3 +18,5 @@ import settings
 
 if __name__ == "__main__":
     execute_manager(settings)
+#@-others
+#@-leo
