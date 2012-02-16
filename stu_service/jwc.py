@@ -135,16 +135,18 @@ class jsparser(HTMLParser):
             return '2'
 
 if __name__ == '__main__':
-    bj = '0903101'
+    bj = '0903103'
     filename = 'kb.html'
     newpage = jwc()
-    newpage.set_js('21','一校区')
-    tp = jsparser()
-    tp.feed(newpage.view_data())
+    newpage.set_kb(bj)
+    newpage.into_file(filename)
+    #newpage.set_js('21','一校区')
+    #tp = jsparser()
+    #tp.feed(newpage.view_data())
     #tp.getresult()
-    s=tp.get_status()
-    for key in s:
-        print key
+    #s=tp.get_status()
+    #for key in s:
+    #    print key
 
 
 

@@ -17,7 +17,7 @@ class js_status(models.Model):
 class feedback_data(models.Model):
     terminal = models.CharField(max_length = 50)
     date = models.CharField(max_length=30)
-    feedback_data = models.TextField()
+    feedbackdata = models.TextField()
 
     def __unicode__(self):
         return self.terminal

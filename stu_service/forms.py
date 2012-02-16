@@ -32,11 +32,11 @@ class JsForm(forms.Form):
             raise forms.ValidationError(u'结束节次不能比开始节次小')
         return sessionend
 
-class feedbackform(forms.Form):
-    feedbackarea = forms.CharFied(widget = forms.Textarea)
+class FeedbackForm(forms.Form):
+    feedbackarea = forms.CharField(widget = forms.Textarea,label = u"反馈内容")
 
     def clean_feedbackarea(self):
         data = self.cleaned_data['feedbackarea']
         if len(data)<5:
-            raise forms.ValidationError("字数必须大于5")
-        return feedbackarea
+            raise forms.ValidationError(u"字数必须大于5")
+        return data

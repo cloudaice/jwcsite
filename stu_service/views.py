@@ -2,15 +2,15 @@
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from jwcsite.stu_service.models import js_status
-from jwcsite.stu_service.forms import JsForm,feedbackarea
+from jwcsite.stu_service.models import js_status,feedback_data
+from jwcsite.stu_service.forms import JsForm,FeedbackForm
 import time
 
 def home_page(request):
     if request.method == 'POST':
         form = JsForm(request.POST)
         if form.is_valid():
-            js=form.cleaned_data
+            js=form.cleaned_data 
             room_tables=[]
             rooms=js_status.objects.filter(room__icontains=js['classroom'])
             start=int(js['sessionstart'])
@@ -41,6 +41,51 @@ def home_page(request):
 
 def feedback(request):
     if request.method == 'POST':
-        form = feedbackarea(request.POST)
+        agent=request.META.get('HTTP_USER_AGENT','unknow')
+        datetime = time.ctime()
+        form =  FeedbackForm(request.POST)
+        if form.is_valid():
+            data=form.cleaned_data['feedbackarea']
+            feedback_data(
+                    terminal=agent,
+                    date = datetime,
+                    feedbackdata=data,
+                    ).save()
+            return HttpResponse(u"<p>谢谢您的反馈</p>")
+    else:
+        form = FeedbackForm()
+    return render_to_response("feedback.html",{'form':form})
+
+def seefeed(request):
+        feedbacks=feedback_data.objects.all()
+        html=[]
+        for i in feedbacks:
+            html.append("<tr><td>%s</td><td>%s</td><td>%s</td></tr>" %(i.terminal,i.date,i.feedbackdata))
+        return HttpResponse(u"<table border='3'>%s</table>"% '\n'.join(html))
+def seedata(request):
+    datas = js_status.objects.all()
+    html=[]
+    dataindex=["room","status","weeks","term","area"]
+    for i in datas:
+        temp="<tr>"
+        temp+=("<td>%s</td>" %i.room)
+        temp+=("<td>%s</td>" %i.status)
+        temp+=("<td>%s</td>" %i.weeks)
+        temp+=("<td>%s</td>" %i.term)
+        temp+=("<td>%s</td>" %i.area)
+        temp+="</tr>"
+        html.append(temp)
+    return HttpResponse(u"<table border='3'>%s</table>"% '\n'.join(html))
+
+
+
+
+
+
+
+
+
+
+
 
 
