@@ -52,7 +52,12 @@ class jwc():
     def view_data(self): 
         data = self.get_html()
         if self.typename=='kb':
+            if '系统提示' in data:
+                return "None"
             data = re.sub('gb2312','utf-8',data) #将'gb2312'替换成'utf-8'
+            data = re.sub('<td><strong class="STYLE1">学期课表查询</strong></td>','',data) 
+            data = re.sub('<td><div align="right"><a href="KFxqkb.asp" >查询其他班级课表</a></div></td>','',data) 
+            data = re.sub('<LI><A class=menu href="Http://Jwc.Hit.Edu.Cn"><SPAN>返回教务处主页</SPAN></A></LI>','',data) 
         self.data=data
         return self.data
 
@@ -135,7 +140,7 @@ class jsparser(HTMLParser):
             return '2'
 
 if __name__ == '__main__':
-    bj = '0903103'
+    bj = '0903101'
     filename = 'kb.html'
     newpage = jwc()
     newpage.set_kb(bj)

@@ -1,2 +1,3 @@
 *.pyc
 stu_service/*.pyc
+.*.swp
