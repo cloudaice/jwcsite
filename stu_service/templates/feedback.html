@@ -3,7 +3,9 @@
 意见反馈
 {% endblock %}
 {% block content %}
+{% block h1 %}
 <h1>意见反馈</h1>
+{% endblock %}
 {% if form.errors %}
 <p style = 'color: red'>
 Please correct the error{{ form.errors|pluralize }} bellow.</p>

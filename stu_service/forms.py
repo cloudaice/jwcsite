@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 from django import forms
 import chardet
+from jwc import *
 
 class JsForm(forms.Form):
     classroom = forms.CharField(label="教学楼名称")
@@ -40,3 +41,15 @@ class FeedbackForm(forms.Form):
         if len(data)<5:
             raise forms.ValidationError(u"字数必须大于5")
         return data
+
+class ViewkbForm(forms.Form):
+    bh=forms.CharField(max_length=8,label = u"输入班号")
+
+    def clean_bh(self):
+        bh = self.cleaned_data['bh']
+        kbpage= jwc()
+        kbpage.set_kb(bh)
+        if not kbpage.view_data():
+            raise forms.ValidationError(u"您所查询的班级不存在")
+        return bh
+

@@ -3,8 +3,9 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from jwcsite.stu_service.models import js_status,feedback_data
-from jwcsite.stu_service.forms import JsForm,FeedbackForm
+from jwcsite.stu_service.forms import JsForm,FeedbackForm,ViewkbForm
 import time
+from jwc import *
 
 def home_page(request):
     if request.method == 'POST':
@@ -77,6 +78,25 @@ def seedata(request):
         html.append(temp)
     return HttpResponse(u"<table border='3'>%s</table>"% '\n'.join(html))
 
+def viewkb(request):
+    if request.method=='POST':
+        form = ViewkbForm(request.POST)
+        if form.is_valid():
+            bh = form.cleaned_data['bh']
+            kbpage = jwc()
+            kbpage.set_kb(bh)
+            html = kbpage.view_data()
+            return HttpResponse(html)
+    else:
+        form = ViewkbForm()
+    return render_to_response('kbpage.html',{'form':form})
+    
+
+
+
+
+
+    
 
 
 

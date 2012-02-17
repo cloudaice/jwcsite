@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^feedback/$',views.feedback),
     url(r'^seefeed/$',views.seefeed),
     url(r'^seedata/$',views.seedata),
+    url(r'^viewkb/$',views.viewkb),
 
     # Uncomment the admin/doc line below to enable admin documentation:
      url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
