@@ -65,23 +65,6 @@
             margin: 0 0 3px;
             padding: 4px 5px;
         }
-        #ft{
-            position:relative;
-            height;60px;
-            clear:both;
-            background:#c6f;
-            width:100%;
-            margin-top:-60px;
-        }
-        #ft p
-        {
-            font:20px;
-            font-size:90%;
-            font-family:vardana;
-            margin-top:0px;
-            color:#487858;
-            clear:both;
-        }
         #container{
             min-height:100%;
             height:auto;
