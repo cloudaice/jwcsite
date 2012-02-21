@@ -34,6 +34,7 @@
             margin-top:0px;
             color:#487858;
             clear:both;
+            text-align:center;
         }
         #sub {
             position :relative;
@@ -77,5 +78,9 @@
         }
         #head{
             padding:10px;
+        }
+        #error {
+            color:red;
+            text-align:center;
         }
 
