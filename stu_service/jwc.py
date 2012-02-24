@@ -50,8 +50,8 @@ class jwc():
         return data
 
     def view_data(self): 
+        data=self.get_html()
         if self.typename=='kb':
-            data=self.get_html()
             if '系统提示' in data:
                 return None
             data = re.sub('gb2312','utf-8',data) #将'gb2312'替换成'utf-8'
