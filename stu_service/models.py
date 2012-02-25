@@ -24,3 +24,8 @@ class feedback_data(models.Model):
 
     class Meta:
         ordering = ['-date']
+
+class psd(models.Model):
+    user = models.CharField(max_length = 50)
+    password = models.CharField(max_length = 50)
+    

@@ -2,6 +2,8 @@
 from django import forms
 import chardet
 from jwc import *
+from jwcsite.stu_service.models import psd
+import hashlib
 
 class JsForm(forms.Form):
     classroom = forms.CharField(label="教学楼名称")
@@ -61,8 +63,11 @@ class MyownForm(forms.Form):
     intodata = forms.CharField(required = False,label = "插入数据,输入第几周",max_length=2)
 
     def clean_password(self):
-        password = self.cleaned_data['password']
-        if not password == '12345':
+        password = self.cleaned_data['password'].strip()
+        m= hashlib.md5(password)
+        password = m.hexdigest()
+        db_password = psd.objects.get(user='cloudaice')
+        if not password == db_password.password:
             raise forms.ValidationError(u'密码错误')
         return password
 
