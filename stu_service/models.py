@@ -12,7 +12,7 @@ class js_status(models.Model):
         return self.room
 
     class Meta:
-        ordering = ['room']
+        ordering = ['weeks']
 
 class feedback_data(models.Model):
     terminal = models.CharField(max_length = 50)
@@ -20,7 +20,7 @@ class feedback_data(models.Model):
     feedbackdata = models.TextField()
 
     def __unicode__(self):
-        return self.terminal
+        return u"%s\n %s" %(self.date,self.feedbackdata)
 
     class Meta:
-        ordering = ['date']
+        ordering = ['-date']

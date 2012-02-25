@@ -10,6 +10,7 @@
 <p id="error" >
 Please correct the error{{ form.errors|pluralize }} bellow.</p>
 {% endif %}
+{% if form %}
 <div id = "form_option" align="center">
     <form action =""  method = "post">
         <table>
@@ -18,4 +19,10 @@ Please correct the error{{ form.errors|pluralize }} bellow.</p>
             <p id = "sub"> <input type = 'submit' value="提交"></p>
     </form>
 </div>
+{% endif %}
+{% if feedback_ok %}
+<p id="thank">谢谢您的反馈</p>
+
+<p id="error"><a href = "/">返回首页</a></p>
+{% endif %}
 {% endblock %}

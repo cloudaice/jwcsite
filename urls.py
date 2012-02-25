@@ -11,11 +11,9 @@ urlpatterns = patterns('',
     # url(r'^$', 'jwcsite.views.home', name='home'),
     # url(r'^jwcsite/', include('jwcsite.foo.urls')),
     url(r'^$',views.home_page),
-    url(r'^data/$',w_data.insertdata),
     url(r'^feedback/$',views.feedback),
-    url(r'^seefeed/$',views.seefeed),
-    url(r'^seedata/$',views.seedata),
     url(r'^viewkb/$',views.viewkb),
+    url(r'^myfirstprojectxc/$',views.myown),
 
     # Uncomment the admin/doc line below to enable admin documentation:
      url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

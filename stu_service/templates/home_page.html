@@ -11,6 +11,7 @@ Please correct the error{{ form.errors|pluralize }} bellow.
 </p>
 {% endif %}
 <div id = "form_option" align = "center">
+    <p>小提示：因为课程都是两节一起上的，因此请您在开始节次中输入奇数，在结束节次中输入偶数</p>
 <form action="" method = 'post'>
     <table>
         {{ form.as_table }}
@@ -24,5 +25,10 @@ Please correct the error{{ form.errors|pluralize }} bellow.
     <tr><td class="solid">{{ k }}</td><td class="solid">{{ v }}</td><td class= "solid">{{ j }}</td></tr>
     {% endfor %}
 </table>
+{% endif %}
+{% if inquiry %}
+{%  if not room_tables %}
+<p id = "error">很抱歉，没有查询到任何您需要的数据</p>
+{% endif %}
 {% endif %}
 {% endblock %}
