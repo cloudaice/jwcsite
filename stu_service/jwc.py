@@ -145,7 +145,7 @@ if __name__ == '__main__':
     filename = 'kb.html'
     newpage = jwc()
     newpage.set_kb(bj)
-    newpage.into_file(filename)
+    print newpage.view_data()
     #newpage.set_js('21','一校区')
     #tp = jsparser()
     #tp.feed(newpage.view_data())

@@ -2,7 +2,7 @@
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from jwcsite.stu_service.models import js_status,feedback_data,psd
+from jwcsite.stu_service.models import js_status,feedback_data,psd,class_table
 from jwcsite.stu_service.forms import JsForm,FeedbackForm,ViewkbForm,MyownForm
 import time
 from jwc import *
@@ -91,10 +91,19 @@ def viewkb(request):
         form = ViewkbForm(request.POST)
         if form.is_valid():
             bh = form.cleaned_data['bh']
-            kbpage = jwc()
-            kbpage.set_kb(bh)
-            html = kbpage.view_data()
-            return HttpResponse(html)
+            try:
+                tables=class_table.objects.get(classnumber=bh)
+            except class_table.DoesNotExist:
+                kbpage = jwc()
+                kbpage.set_kb(bh)
+                html = kbpage.view_data()
+                class_table(
+                        classnumber=bh,
+                        classtable=html
+                        ).save()
+                return HttpResponse(html)
+            else:
+                return HttpResponse(tables.classtable)
     else:
         form = ViewkbForm()
     return render_to_response('kbpage.html',{'form':form})
@@ -114,7 +123,7 @@ def myown(request):
                     value = key
                     break
             if value ==0:
-                dataform=[]
+                dataform= []
                 datas = js_status.objects.all()
                 for data in datas:
                     temp = (data.room,data.status,data.weeks,data.term,data.area)

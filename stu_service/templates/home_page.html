@@ -4,7 +4,30 @@
 {% endblock %}
 {% block content %}
 <h1>教室状态查询</h1>
-<p align = "center">您可以在教学楼方框中输入<strong>正心，致知，诚意</strong>来查询哪些教室处于空闲状态.<br>同时您可以点击<a href = "/viewkb">这里</a>查询课表。</p>
+<div align="center">
+<table width="13%">
+<th colspan='2'>
+    <!-- JiaThis Button BEGIN -->
+<div id="ckepop" >
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_renren">人人网</a>
+<!--<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>-->
+</div>
+<script type="text/javascript" src="http://v2.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+    </th>
+    <tr>
+        <td>
+<a href="/viewkb">查课表</a>
+        </td>
+        <td>
+<a href="/feedback">提建议</a>
+        </td>
+   </tr>
+</table>
+</div>
+<p align = "center">您可以在教学楼方框中输入<strong>正心，致知，诚意</strong>来查询哪些教室处于空闲状态.</p>
 {% if form.errors %}
 <p id="error">
 Please correct the error{{ form.errors|pluralize }} bellow.

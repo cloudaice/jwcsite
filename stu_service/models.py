@@ -28,4 +28,14 @@ class feedback_data(models.Model):
 class psd(models.Model):
     user = models.CharField(max_length = 50)
     password = models.CharField(max_length = 50)
+
+class class_table(models.Model):
+    classnumber = models.CharField(max_length=10)
+    classtable = models.TextField()
+
+    def __unicode__(self):
+        return self.classnumber
+
+    class Meta:
+        ordering = ['classnumber']
     

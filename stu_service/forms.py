@@ -30,10 +30,14 @@ class JsForm(forms.Form):
         if not sessionend in ['2','4','6','8','10']:
             raise forms.ValidationError('结束节次要输入偶数哦')
         end=(int)(session['sessionend'])
-        start=(int)(session['sessionstart'])
-        if end<start:
-            raise forms.ValidationError(u'您输入的结束节次是不是比结束节次要小呢')
-        return sessionend
+        try:
+            start=(int)(session['sessionstart'])
+            if end<start:
+                raise forms.ValidationError(u'您输入的结束节次是不是比结束节次要小呢')
+            return sessionend
+        except KeyError:
+            return sessionend
+            
 
 class FeedbackForm(forms.Form):
     feedbackarea = forms.CharField(widget = forms.Textarea,label = u"反馈内容")
