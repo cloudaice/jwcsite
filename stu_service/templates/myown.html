@@ -20,7 +20,7 @@ Please correct the error{{ form.errors|pluralize }} bellow.
 </div>
 {% endif %}
 {% if dataform %}
-<table class ="collapse">
+<table class ="table table-striped">
     {% for k,v,j,s,t in dataform %}
     <tr><td class="solid">{{ k }}</td><td class="solid">{{ v }}</td><td class= "solid">{{ j }}</td>
     <td class= "solid">{{ s }}</td><td class= "solid">{{ t }}</td></tr>
@@ -28,7 +28,7 @@ Please correct the error{{ form.errors|pluralize }} bellow.
 </table>
 {% endif %}
 {% if feedform %}
-<table class ="collapse">
+<table class ="table table-striped">
     {% for k,v,j in feedform %}
     <tr><td class="solid">{{ k }}</td><td class="solid">{{ v }}</td><td class= "solid">{{ j }}</td></tr>
     {% endfor %}

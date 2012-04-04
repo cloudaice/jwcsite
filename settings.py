@@ -109,7 +109,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'jwcsite.urls'
 
 TEMPLATE_DIRS = (
-        '/home/cloudaice/pyrepo/jwcsite/stu_service/templates',
+        '/home/cloudaice/dev-jwc/jwcsite/stu_service/templates',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -127,7 +127,6 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
      'django.contrib.admindocs',
      'jwcsite.stu_service',
-
 )
 
 # A sample logging configuration. The only tangible logging
