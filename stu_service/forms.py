@@ -6,9 +6,9 @@ from jwcsite.stu_service.models import psd
 import hashlib
 
 class JsForm(forms.Form):
-    classroom = forms.CharField(widget=forms.TextInput(attrs={'placeholder':"正心 or 诚意 or 致知"}))
-    sessionstart = forms.CharField(widget=forms.TextInput(attrs={'placeholder':"输入奇数",}))
-    sessionend = forms.CharField(widget=forms.TextInput(attrs={'placeholder':"输入偶数",}))
+    classroom = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'正心 or 诚意 or 致知',}))
+    sessionstart = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'输入奇数节次',}))
+    sessionend = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'输入偶数节次',}))
 
     def clean_classroom(self):
         classroom = self.cleaned_data['classroom']

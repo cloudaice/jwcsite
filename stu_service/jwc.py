@@ -46,7 +46,7 @@ class jwc():
                 )
         jump = urllib2.urlopen(req)
         data = jump.read()
-        data=data.decode('gb2312').encode('utf-8')
+        data=data.decode('gb2312','ignore').encode('utf-8')
         return data
 
     def view_data(self): 
@@ -141,18 +141,18 @@ class jsparser(HTMLParser):
             return '2'
 
 if __name__ == '__main__':
-    bj = '0903101'
-    filename = 'kb.html'
+    #bj = '0903101'
+    #filename = 'kb.html'
     newpage = jwc()
-    newpage.set_kb(bj)
-    print newpage.view_data()
-    #newpage.set_js('21','一校区')
-    #tp = jsparser()
-    #tp.feed(newpage.view_data())
-    #tp.getresult()
-    #s=tp.get_status()
-    #for key in s:
-    #    print key
+    #newpage.set_kb(bj)
+    #print newpage.view_data()
+    newpage.set_js('09','一校区')
+    tp = jsparser()
+    tp.feed(newpage.view_data())
+    tp.getresult()
+    s=tp.get_status()
+    for key in s:
+        print key
 
 
 

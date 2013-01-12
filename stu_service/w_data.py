@@ -20,7 +20,7 @@ def insertdata(week):
                     room=r[key],
                     status=s[key],
                     weeks=week,
-                    term='2012-1',
+                    term='2012-2',
                     area='一校区',
                     ).save()
         return  HttpResponse('data has insert')

@@ -8,7 +8,7 @@ import time
 from jwc import *
 from jwcsite.stu_service import w_data
 from datetime import datetime
-BEGIN_WEEK=8
+BEGIN_WEEK=35
 
 def home_page(request):
     if request.method == 'POST':
@@ -21,7 +21,7 @@ def home_page(request):
             str_school_week=str(school_week)
             if len(str_school_week)==1:
                 str_school_week = '0'+str_school_week;
-            rooms=js_status.objects.filter(room__icontains=js['classroom'],weeks=str_school_week)
+            rooms=js_status.objects.filter(room__contains=js['classroom'],weeks=str_school_week,term='2012-2')
             start=int(js['sessionstart'])
             end = int(js['sessionend'])
             times= (end-start+1)/2
@@ -147,7 +147,7 @@ def myown(request):
                 s = js_data.get_status()
                 if len(r)== len(s):
                     for key in range(len(r)):
-                        temp = (r[key],s[key],week,'2012-1','一校区')
+                        temp = (r[key],s[key],week,'2012-2','一校区')
                         oneform.append(temp)
                     return render_to_response('myown.html',{'dataform':oneform})
                 return HttpResponse("some thing wrong")
@@ -156,42 +156,4 @@ def myown(request):
     else:
         form = MyownForm()
     return render_to_response('myown.html',{'form':form})
-
-
-                
-
-                   
-
-
-            
-                
-
-                
-
-
-
-
-
-         
-
-    
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
 

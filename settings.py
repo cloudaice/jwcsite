@@ -3,7 +3,7 @@
 import os
 
 HERE = os.path.dirname(__file__)
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -15,7 +15,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home/cloudaice/sqlite3/jwc.db',                      # Or path to database file if using sqlite3.
+        'NAME': '/home/dev-user/sqlite3/jwc.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -109,7 +109,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'jwcsite.urls'
 
 TEMPLATE_DIRS = (
-        '/home/cloudaice/dev-jwc/jwcsite/stu_service/templates',
+        '/home/dev-user/xc/jwcsite/stu_service/templates',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
      'django.contrib.admindocs',
      'jwcsite.stu_service',
+
 )
 
 # A sample logging configuration. The only tangible logging
