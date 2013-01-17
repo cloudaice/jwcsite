@@ -156,4 +156,3 @@ def myown(request):
     else:
         form = MyownForm()
     return render_to_response('myown.html',{'form':form})
-
