@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#*- coding: utf-8 -*-
 from HTMLParser import HTMLParser
 from htmlentitydefs import entitydefs
 import cookielib
@@ -70,12 +70,12 @@ class jwc():
 
 class jsparser(HTMLParser):
     def __init__(self):
-        self.js_in=0    #记录一个<tr>中读取到哪一行
-        self.js=[]    #存储教室名字的列表 
-        self.status=[]    #存储每一个教室一个星期的使用状态，因此，它是一个双层列表
-        self.js_status=[]    #一个教室一个星期的使用状态，它作为self.status的一个元素
-        self.js_data=''    #计算教室名字的中间量
-        HTMLParser.__init__(self)    #初始化父类
+        self.js_in=0                        #记录一个<tr>中读取到哪一行
+        self.js=[]                          #存储教室名字的列表 
+        self.status=[]                      #存储每一个教室一个星期的使用状态，因此，它是一个双层列表
+        self.js_status=[]                   #一个教室一个星期的使用状态，它作为self.status的一个元素
+        self.js_data=''                     #计算教室名字的中间量
+        HTMLParser.__init__(self)           #初始化父类
 
     def handle_starttag(self,tag,attrs):  #读到开始标签
         if tag == 'td' and len(attrs) == 1:
