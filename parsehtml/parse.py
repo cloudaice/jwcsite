@@ -1,5 +1,6 @@
 #-*-coding:utf-8-*-
 from bs4 import BeautifulSoup as BS
+import re
 
 
 class kebiao(object):
@@ -17,7 +18,21 @@ class kebiao(object):
             print len(t.contents)
 
     def _showtable(self):
-        print self.soup.html.body.table
+        div = self.soup.html.body.find(id='spacemain').find(class_='center')
+        table = div.find_all(border='0')[1]
+        print table.name
+        print len(table.contents)
+        for child in table.children:
+            if hasattr(child, 'name'):
+                print child.name
+                print child
+                print '##################'
+
+        exit()
+        print len(table)
+        for content in  table:
+            if hasattr(content, 'name'):
+                print content.name
 
 
 if __name__ == "__main__":
