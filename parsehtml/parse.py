@@ -8,10 +8,11 @@ class kebiao(object):
         self.html = html
         self.soup = BS(html)
         self.table_title = None
-        # self.kebiao data struct like: [[(课程名, 教师, 教室, 上课时间),...],[...],...]
+        # self.kebiao data struct like: [[(课程名, 教师教室, 上课周次),...],[...],...]
         self.kebiao =[[[] for i in range(6)] for j in range(8)]
         # self.exams data struct like: [(周次, 星期, 时间, 地点, 课程名), ...]
         self.exams = []
+        self.weekdays_name = []
         assert(self.soup.name == '[document]')
 
     def _print(self):
@@ -38,8 +39,12 @@ class kebiao(object):
         kb_exam = filter(lambda x: hasattr(x, 'name'), row[6].contents)
 
         # 提取课表项：周一,周二....
+        self.weekdays_name = []
         for kb_t in kb_title[1:]:
-            print [string for string in kb_t.stripped_strings][0]
+            try:
+                self.weekdays_name.append(kb_t.stripped_strings.next())
+            except StopIteration, e:
+                pass
 
         # 提取第一节课的信息
         for i, kb_f in enumerate(kb_first_class[1:]):
@@ -101,18 +106,19 @@ class kebiao(object):
 
     def showtable(self):
         self._parse()
-        for i in range(1,7,1):
-            for j in range(1,5,1):
-                for name, te, d in self.kebiao[i][j]:
-                    print name, te, d
+        for i in range(1,8,1):
+            print self.weekdays_name[i-1],':'
+            for j in range(1,6,1):
+                print "第%d节:" % j,
+                for course, teac_and_addr, weeks in self.kebiao[i][j]:
+                    print course, teac_and_addr, weeks,
+                print '\n'
         for week, day, time, addr, course in self.exams:
             print week, day, time, addr, course
          
 
 if __name__ == "__main__":
-    fd = open('kb.html', 'r')
-    html = kebiao(fd)
-    #html._print()
-    #html._findall('table')
-    html._showtable()
+    with open('kb.html', 'r') as html:
+        html = kebiao(html)
+    html.showtable()
 
