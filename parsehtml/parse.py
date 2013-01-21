@@ -8,19 +8,16 @@ class kebiao(object):
         self.html = html
         self.soup = BS(html)
         self.table_title = None
+        # self.kebiao data struct like: [[(课程名, 教师, 教室, 上课时间),...],[...],...]
         self.kebiao =[[[] for i in range(6)] for j in range(8)]
-        self.exam = []
+        # self.exams data struct like: [(周次, 星期, 时间, 地点, 课程名), ...]
+        self.exams = []
         assert(self.soup.name == '[document]')
 
     def _print(self):
         print self.soup.prettify()
 
-    def _findall(self, tag):
-        tags = self.soup.find_all(tag)
-        for t in tags:
-            print len(t.contents)
-
-    def _showtable(self):
+    def _parse(self):
         div = self.soup.html.body.find(id='spacemain').find(class_='center')
         table = filter(lambda x: hasattr(x, 'name') and x.name == 'table', div.contents)
         table = filter(lambda x: hasattr(x, 'name'), table[1].contents)
@@ -100,12 +97,16 @@ class kebiao(object):
             tmp = filter(lambda x: hasattr(x, 'name'), kb_e.contents)
             ts = tmp[0].stripped_strings
             for text in ts:
-                print self.exam.append(set(text.split()))
+                self.exams.append(tuple(text.split()))
 
-        print self.kebiao
-        print self.exam
-        for name, te, d in self.kebiao[3][2]:
-            print name,te,d
+    def showtable(self):
+        self._parse()
+        for i in range(1,7,1):
+            for j in range(1,5,1):
+                for name, te, d in self.kebiao[i][j]:
+                    print name, te, d
+        for week, day, time, addr, course in self.exams:
+            print week, day, time, addr, course
          
 
 if __name__ == "__main__":
