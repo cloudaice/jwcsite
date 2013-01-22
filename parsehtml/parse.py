@@ -1,6 +1,9 @@
 #-*-coding:utf-8-*-
 from bs4 import BeautifulSoup as BS
 import re
+import os
+
+current_dir = os.path.dirname(__file__)
 
 
 class kebiao(object):
@@ -116,7 +119,7 @@ class kebiao(object):
             print week, day, time, addr, course
 
 if __name__ == "__main__":
-    with open('kb.html', 'r') as html:
+    with open(current_dir + '/kb.html', 'r') as html:
         html = kebiao(html)
     html()
     html.showtable()
