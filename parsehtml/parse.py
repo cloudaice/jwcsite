@@ -18,7 +18,7 @@ class kebiao(object):
     def _print(self):
         print self.soup.prettify()
 
-    def _parse(self):
+    def __call__(self):
         div = self.soup.html.body.find(id='spacemain').find(class_='center')
         table = filter(lambda x: hasattr(x, 'name') and x.name == 'table', div.contents)
         table = filter(lambda x: hasattr(x, 'name'), table[1].contents)
@@ -105,7 +105,6 @@ class kebiao(object):
                 self.exams.append(tuple(text.split()))
 
     def showtable(self):
-        self._parse()
         for i in range(1,8,1):
             print self.weekdays_name[i-1],':'
             for j in range(1,6,1):
@@ -115,10 +114,9 @@ class kebiao(object):
                 print '\n'
         for week, day, time, addr, course in self.exams:
             print week, day, time, addr, course
-         
 
 if __name__ == "__main__":
     with open('kb.html', 'r') as html:
         html = kebiao(html)
+    html()
     html.showtable()
-
