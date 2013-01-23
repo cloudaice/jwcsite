@@ -1,9 +1,10 @@
 #-*-coding:utf-8-*-
 from bs4 import BeautifulSoup as BS
 import re
-import os
+import sys
 
-current_dir = os.path.dirname(__file__)
+current_dir = sys.path[0] + '/'
+print current_dir
 
 
 class kebiao(object):
@@ -118,8 +119,12 @@ class kebiao(object):
         for week, day, time, addr, course in self.exams:
             print week, day, time, addr, course
 
+def escap(html):
+    html.decode('gbk', 'ignore').encode('utf-8')
+    return html
+
 if __name__ == "__main__":
-    with open(current_dir + '/kb.html', 'r') as html:
-        html = kebiao(html)
-    html()
-    html.showtable()
+    with open(current_dir + 'chengji.html', 'r') as html:
+        html = html.read()
+        html = escap(html)
+    print html
