@@ -124,7 +124,9 @@ def escap(html):
     return html
 
 if __name__ == "__main__":
-    with open(current_dir + 'chengji.html', 'r') as html:
-        html = html.read()
-        html = escap(html)
-    print html
+    with open(current_dir + 'kb.html', 'r') as html:
+        #html = html.read()
+        #html = escap(html)
+        html = kebiao(html)
+    html()
+    html.showtable()
