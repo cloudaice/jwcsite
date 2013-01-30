@@ -11,3 +11,6 @@ class Chengji(object):
         self.soup = BS(html)
         self.table_title = None
 
+    def __call__(self):
+        pass
+
