@@ -123,9 +123,7 @@ class Kebiao(object):
 
 
 if __name__ == "__main__":
-    with open(current_dir + 'chengji.html', 'r') as html:
-        html = html.read()
-        html = escap.escap(html)
-    #html()
-    #html.showtable()
-    print html
+    with open(current_dir + 'kb.html', 'r') as html:
+        html = Kebiao(html)
+    html()
+    html.showtable()
