@@ -2,12 +2,14 @@
 from bs4 import BeautifulSoup as BS
 import re
 import sys
+import escap
+
 
 current_dir = sys.path[0] + '/'
 print current_dir
 
 
-class kebiao(object):
+class Kebiao(object):
     def __init__(self, html):
         self.html = html
         self.soup = BS(html)
@@ -119,14 +121,11 @@ class kebiao(object):
         for week, day, time, addr, course in self.exams:
             print week, day, time, addr, course
 
-def escap(html):
-    html.decode('gbk', 'ignore').encode('utf-8')
-    return html
 
 if __name__ == "__main__":
-    with open(current_dir + 'kb.html', 'r') as html:
-        #html = html.read()
-        #html = escap(html)
-        html = kebiao(html)
-    html()
-    html.showtable()
+    with open(current_dir + 'chengji.html', 'r') as html:
+        html = html.read()
+        html = escap.escap(html)
+    #html()
+    #html.showtable()
+    print html
