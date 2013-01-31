@@ -1,8 +1,6 @@
 #-*-coding:utf-8-*-
 from bs4 import BeautifulSoup as BS
-import re
 import sys
-import escap
 
 
 current_dir = sys.path[0] + '/'
@@ -15,7 +13,7 @@ class Kebiao(object):
         self.soup = BS(html)
         self.table_title = None
         # self.kebiao data struct like: [[(课程名, 教师教室, 上课周次),...],[...],...]
-        self.kebiao =[[[] for i in range(6)] for j in range(8)]
+        self.kebiao = [[[] for i in range(6)] for j in range(8)]
         # self.exams data struct like: [(周次, 星期, 时间, 地点, 课程名), ...]
         self.exams = []
         self.weekdays_name = []
@@ -49,7 +47,7 @@ class Kebiao(object):
         for kb_t in kb_title[1:]:
             try:
                 self.weekdays_name.append(kb_t.stripped_strings.next())
-            except StopIteration, e:
+            except StopIteration:
                 pass
 
         # 提取第一节课的信息
@@ -59,8 +57,8 @@ class Kebiao(object):
             tmp = filter(lambda x: hasattr(x, 'name'), tmp[0].contents)
             while True:
                 try:
-                    self.kebiao[i+1][1].append((ts.next(), ts.next(), ts.next()))
-                except StopIteration, e:
+                    self.kebiao[i + 1][1].append((ts.next(), ts.next(), ts.next()))
+                except StopIteration:
                     break
 
         # 提取第二节
@@ -69,8 +67,8 @@ class Kebiao(object):
             ts = tmp[0].stripped_strings
             while True:
                 try:
-                    self.kebiao[i+1][2].append((ts.next(), ts.next(), ts.next()))
-                except StopIteration, e:
+                    self.kebiao[i + 1][2].append((ts.next(), ts.next(), ts.next()))
+                except StopIteration:
                     break
 
         # 提取第三节课
@@ -79,8 +77,8 @@ class Kebiao(object):
             ts = tmp[0].stripped_strings
             while True:
                 try:
-                    self.kebiao[i+1][3].append((ts.next(), ts.next(), ts.next()))
-                except StopIteration, e:
+                    self.kebiao[i + 1][3].append((ts.next(), ts.next(), ts.next()))
+                except StopIteration:
                     break
 
         # 提取第四节课
@@ -89,18 +87,18 @@ class Kebiao(object):
             ts = tmp[0].stripped_strings
             while True:
                 try:
-                    self.kebiao[i+1][4].append((ts.next(), ts.next(), ts.next()))
-                except StopIteration, e:
+                    self.kebiao[i + 1][4].append((ts.next(), ts.next(), ts.next()))
+                except StopIteration:
                     break
 
-        # 提取第五节课 
+        # 提取第五节课
         for i, kb_f in enumerate(kb_fifth_class[1:]):
             tmp = filter(lambda x: hasattr(x, 'name'), kb_f.contents)
             ts = tmp[0].stripped_strings
             while True:
                 try:
-                    self.kebiao[i+1][5].append((ts.next(), ts.next(), ts.next()))
-                except StopIteration, e:
+                    self.kebiao[i + 1][5].append((ts.next(), ts.next(), ts.next()))
+                except StopIteration:
                     break
 
         #考试信息提取
@@ -111,9 +109,9 @@ class Kebiao(object):
                 self.exams.append(tuple(text.split()))
 
     def showtable(self):
-        for i in range(1,8,1):
-            print self.weekdays_name[i-1],':'
-            for j in range(1,6,1):
+        for i in range(1, 8, 1):
+            print self.weekdays_name[i - 1], ':'
+            for j in range(1, 6, 1):
                 print "第%d节:" % j,
                 for course, teac_and_addr, weeks in self.kebiao[i][j]:
                     print course, teac_and_addr, weeks,
