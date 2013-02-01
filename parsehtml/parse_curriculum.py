@@ -2,7 +2,6 @@
 from bs4 import BeautifulSoup as BS
 import sys
 
-
 current_dir = sys.path[0] + '/'
 print current_dir
 

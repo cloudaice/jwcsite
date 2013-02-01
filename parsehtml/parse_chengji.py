@@ -41,7 +41,7 @@ class Chengji(object):
                     continue
             self.chengji.append(tuple(this_row))
 
-    def  show(self):
+    def show(self):
         for row in self.chengji:
             print "%s," * 10 % row
 
