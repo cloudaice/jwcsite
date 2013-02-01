@@ -6,6 +6,12 @@ import escap
 current_dir = sys.path[0] + '/'
 print current_dir
 
+"""
+tuple
+('课程名','授课教师','学分','学时','起止周','详细信息','上课时间','教室','备注')
+
+"""
+
 
 class Course(object):
     def __init__(self, html):
@@ -30,9 +36,7 @@ class Course(object):
                     try:
                         print tr_iter.next(),
                     except StopIteration:
-                        print '\n'
                         break
-
 
 if __name__ == '__main__':
     with open(current_dir + 'xuanke.html') as html:
