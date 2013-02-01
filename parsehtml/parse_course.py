@@ -21,8 +21,17 @@ class Course(object):
         td = filter(lambda x: hasattr(x, 'name'), trs[1].contents)[0]
         tables = filter(lambda x: hasattr(x, 'name') and x.name == 'table'
                         and x.get('align') and x['align'] == 'center', td.contents)
-        for t in tables:
-            print t.attrs
+        for table in tables:
+            tbody = table.find('tbody', recursive=False)
+            trs = filter(lambda x: hasattr(x, 'name'), tbody.find_all('tr', recursive=False))
+            for tr in trs:
+                tr_iter = tr.stripped_strings
+                while True:
+                    try:
+                        print tr_iter.next(),
+                    except StopIteration:
+                        print '\n'
+                        break
 
 
 if __name__ == '__main__':
