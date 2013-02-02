@@ -1,10 +1,12 @@
+#-*-coding: utf-8-*-
 import chardet
 from chardet.universaldetector import UniversalDetector
 
 
 def escap(html):
     code_type = chardet.detect(html)['encoding']
-    return html.decode(code_type, 'ignore').encode('utf-8')
+    print code_type
+    return html.decode('GBK', 'ignore').encode('utf-8', 'ignore')
 
 
 def testcode(f):

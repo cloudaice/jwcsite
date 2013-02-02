@@ -15,6 +15,9 @@ class Geren(object):
     def __call__(self):
         forms = self.soup.find('form')
         tbody = forms.find('tbody')
+        if not tbody:
+            tbody = forms.find('table')
+            print tbody
         trs = filter(lambda x: hasattr(x, 'name') and x.name == 'tr', tbody.contents)
         for i, tr in enumerate(trs):
             if i == 6:
