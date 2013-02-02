@@ -14,8 +14,8 @@ class Geren(object):
 
     def __call__(self):
         forms = self.soup.find('form')
-        print forms
-        
+        tbody = forms.find('tbody')
+        trs = filter(lambda x: hasattr(x, 'name') and x.name == 'tr', tbody.contents)
 
 if __name__ == "__main__":
     with open(current_dir + 'geren.html') as html:
