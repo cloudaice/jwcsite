@@ -4,8 +4,6 @@ import sys
 import config
 sys.path.append(sys.path[0] + '/parsehtml')
 import parse_geren
-#reload(sys)
-#sys.setdefaultencoding('utf-8')
 
 if __name__ == '__main__':
     url = config.url
