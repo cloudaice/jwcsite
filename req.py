@@ -23,7 +23,7 @@ class Do_pic(object):
 
     def __call__(self):
         r = requests.get(url)
-        name = url.split('/')[-1]
+        name = url.split('/')[-1].strip()
         print name
         with open('image/' + name, 'w') as f:
             f.write(r.content)
