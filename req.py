@@ -16,19 +16,21 @@ class Do_html(object):
         html = r.text
         return html
 
-
 class Do_pic(object):
     def __init__(self, url):
         self.url = url
 
     def __call__(self):
-        r = requests.get(url)
-        name = url.split('/')[-1].strip()
-        print name
+        try:
+            r = requests.get(url)
+            assert(r.status_code == 200)
+            name = url.split('/')[-1].strip()
+        except:
+            return False
         with open('image/' + name, 'w') as f:
             f.write(r.content)
+        return True
             
-
 if __name__ == '__main__':
     url = config.url_p
     down = Do_pic(url)
