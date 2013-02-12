@@ -18,6 +18,7 @@ class Chengji(object):
         div = self.soup.html.find(id='spacemain').find(class_='center')
         div = filter(lambda x: hasattr(x, 'name') and x.name == 'table', div.contents)
         table = filter(lambda x: hasattr(x, 'name'), div[0].contents)
+        
         try:
             self.student_num = table[0].stripped_strings.next().split()[0][0:-1]
         except StopIteration:
