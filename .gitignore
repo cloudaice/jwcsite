@@ -3,5 +3,5 @@
 .DS_Store
 config.py
 /image
-/htmls
-/html
+htmls
+html
