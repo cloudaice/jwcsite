@@ -1,6 +1,7 @@
 #-*-coding:utf-8-*-
 
 import os
+import asyncmongo
 import tornado.web
 import tornado.ioloop
 from tornado.httpserver import HTTPServer
@@ -31,6 +32,7 @@ settings = {
         'static_path': os.path.join(os.path.dirname(__file__), 'static'),
         'template_path': os.path.join(os.path.dirname(__file__), 'template'),
         }
+
 
 application = tornado.web.Application([(r'/', Home),
                                        (r'/classroom', Classroom),
