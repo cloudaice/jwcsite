@@ -1,15 +1,27 @@
 #-*-coding:utf-8-*-
 
 import os
+import Mongo
 import asyncmongo
 import tornado.web
 import tornado.ioloop
 from tornado.httpserver import HTTPServer
 
+cnn = Mongo.conn()
+db = cnn['jwcsite']
 
 class Home(tornado.web.RequestHandler):
     def get(self):
         self.render('home.html')
+
+    def post(self):
+        date = self.get_argument('date')
+        section_start = self.get_argument('section_start')
+        section_end = self.get_argument('sections_end')
+        
+
+        
+
 
 
 class Classroom(tornado.web.RequestHandler):
