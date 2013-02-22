@@ -25,10 +25,7 @@ class Classroom(tornado.web.RequestHandler):
         section_end = self.get_argument('sections_end')
         docs = db.ClassStatus.find({'date':date}, {'roomname': 1, 'status': 1})
         docs = filter(lambda x: x['status'][section_start-1:section_end] == '0' * (section_end - section_start + 1), docs)
-        self.render('home.html', docs = docs)
-
-    def post(self):
-        pass
+        self.render('home.html', room_table = docs)
 
 
 class Feedback(tornado.web.RequestHandler):
