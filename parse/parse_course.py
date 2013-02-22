@@ -37,9 +37,10 @@ class Course(object):
                         print tr_iter.next(),
                     except StopIteration:
                         break
+                print '\n'
 
 if __name__ == '__main__':
-    with open(current_dir + 'xuanke.html') as html:
+    with open(current_dir + '../htmls/xuanke.html') as html:
         html = html.read()
         html = escap.escap(html)
         html = Course(html)
