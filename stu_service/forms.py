@@ -88,7 +88,3 @@ class MyownForm(forms.Form):
         if not count == 1:
             raise forms.ValidationError(u'重新输入')
         return s[3]
-
-
-                
-
