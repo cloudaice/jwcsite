@@ -1,5 +1,6 @@
 #-*-coding:utf-8-*-
 
+import os
 import tornado.web
 import tornado.ioloop
 from tornado.httpserver import HTTPServer
@@ -7,7 +8,7 @@ from tornado.httpserver import HTTPServer
 
 class Home(tornado.web.RequestHandler):
     def get(self):
-        pass
+        self.render('home.html')
 
 
 class Classroom(tornado.web.RequestHandler):
@@ -26,10 +27,15 @@ class Feedback(tornado.web.RequestHandler):
         pass
 
 
-application = tornado.web.Application([(r"/", Home),
+settings = {
+        'static_path': os.path.join(os.path.dirname(__file__), 'static'),
+        'template_path': os.path.join(os.path.dirname(__file__), 'template'),
+        }
+
+application = tornado.web.Application([(r'/', Home),
                                        (r'/classroom', Classroom),
                                        (r'/feedback', Feedback),
-                                       ], debug=True
+                                       ], debug=True, **settings
                                       )
 
 if __name__ == "__main__":

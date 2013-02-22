@@ -1,0 +1,91 @@
+        table.collapse {
+            border-collapse:collapse;
+            width:100% 
+        }
+        td.solid {
+            border:1px;
+            solid: black;
+            text-align: center; 
+            height: 36px
+        }
+        #form_option {
+            position: relative;
+            top: 30px;
+        }
+        h1 {
+            font-family: Georgia,serif; 
+            text-align:center;
+        }
+        #footer {
+            position:relative;
+            top:30px;
+            bottom:0px;
+            height: 50px;
+            background: #ccc;
+            width:100%;
+            padding-bottom:5px;
+            padding-top:10px;
+        }
+        #footer p
+        {
+            font:20px;
+            font-size:90%;
+            font-family:vardana;
+            margin-top:0px;
+            color:#487858;
+            clear:both;
+            text-align:center;
+        }
+        #sub {
+            position :relative;
+            top:0px;  
+            margin-bottom:50px;
+        }
+        html,body{
+            background:#FFDA89;
+        }
+        #search
+        {
+            width: 102px;
+            height: 52px;
+            font-size: 24px; 
+            font-margin:10px,10px,10px,10px;
+            color: black; 
+            cursor: center;
+            background: url(http://img.cool80.com/i/gif/31/106.gif) no-repeat center;
+        }
+        ul.errorlist {
+        margin: 0;
+        padding: 0;
+        }
+        .errorlist li {
+            background-color: red;
+            color: white;
+            display: block;
+            font-size: 10px;
+            margin: 0 0 3px;
+            padding: 4px 5px;
+        }
+        #container{
+            min-height:100%;
+            height:auto;
+            height:100%;
+            margin:0 auto -60px;
+        }
+        #page{
+            width:100%;
+            padding-bottom:60px;
+        }
+        #head{
+            padding:10px;
+        }
+        #error {
+            color:red;
+            text-align:center;
+        }
+        #thank {
+            font-size:2.5em;
+            color:#ee30a7;
+            text-align:center;
+        }
+
