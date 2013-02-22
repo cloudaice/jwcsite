@@ -14,19 +14,18 @@ class Home(tornado.web.RequestHandler):
     def get(self):
         self.render('home.html')
 
-    def post(self):
-        date = self.get_argument('date')
-        section_start = self.get_argument('section_start')
-        section_end = self.get_argument('sections_end')
-        
-
-        
-
-
 
 class Classroom(tornado.web.RequestHandler):
     def get(self):
         pass
+
+    def post(self):
+        date = self.get_argument('date')
+        section_start = self.get_argument('section_start')
+        section_end = self.get_argument('sections_end')
+        docs = db.ClassStatus.find({'date':date}, {'roomname': 1, 'status': 1})
+        docs = filter(lambda x: x['status'][section_start-1:section_end] == '0' * (section_end - section_start + 1), docs)
+        self.render('home.html', docs = docs)
 
     def post(self):
         pass
