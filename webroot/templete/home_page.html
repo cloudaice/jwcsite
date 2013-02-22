@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}
+教室状态查询
+{% endblock %}
+{% block content %}
+<div class="page-header">
+<h1>教室状态查询</h1>
+</div>
+<div class = "row">
+<div class = "span7">
+<form class="well form-inline" action="" method = 'post'>
+    <fieldset>
+        {% if form.classroom.errors %}
+    <div class ="control-group error" >
+        {% else %}
+    <div class ="control-group success" >
+        {% endif %}
+        <label class="control-label" for="inputError">教学楼名称</label>
+        <div class="controls">
+        {{ form.classroom }}
+        <spam class="help-inline">{{ form.classroom.errors }}</spam>
+        </div>
+    </div>
+
+        {% if form.sessionstart.errors %}
+    <div class ="control-group error" >
+        {% else %}
+    <div class ="control-group success" >
+        {% endif %}
+        <label for="id_sessionstart">开始节次</label>
+        <div class="controls">
+        {{ form.sessionstart }}
+        <spam class = "help-inline">{{ form.sessionstart.errors }}</spam>
+        </div>
+    </div>
+
+     {% if form.sessionend.errors %}
+    <div class="control-group error">
+        {% else %}
+    <div class="control-group success">
+        {% endif %}
+        <label for="id_sessionend">结束节次</label>
+        <div class="controls">
+        {{ form.sessionend }}
+        <spam class = "help-inline">{{ form.sessionend.errors }}</spam>
+       </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">查询</button>
+   </fieldset>
+</form>
+</div>
+<div class = "span5">
+<div class = "hero-unit" style="padding:10px">
+ <div class="alert alert-info">
+        <p>根据同学反馈信息，修整了页面，并且由<strong>JJW</strong>同学制作了android客户端</p>
+   </div>
+<div style="margin-left:50px">
+<p><a href="/static/download/jwc.apk"><img src="http://images.51cto.com/files/uploadimg/20110318/150435628.png" width="100px" height="20px" class = "icon" alt="app"</a></p>
+<p><a href="/static/download/jwc.apk">客户端0.1版</a></p>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="http://widget.renren.com/js/rrshare.js"></script>
+<a name="xn_share" onclick="shareClick()" type="button_large" href="javascript:;"></a>
+<script type="text/javascript">
+	function shareClick() {
+		var rrShareParam = {
+			resourceUrl : '',	//分享的资源Url
+			pic : '',		//分享的主题图片Url
+			title : '',		//分享的标题
+			description : ''	//分享的详细描述
+		};
+		rrShareOnclick(rrShareParam);
+	}
+</script>
+
+<script type="text/javascript">document.write(['<a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=',encodeURIComponent(location.href),'&title=',encodeURIComponent(document.title),'" target="_blank"  title="分享到QQ空间"><img src="http://qzonestyle.gtimg.cn/ac/qzone_v5/app/app_share/btn_share.png" alt="分享到QQ空间" /><\/a>'].join(''));</script>
+
+{% if room_tables %}
+<table class ="table table-striped">
+    {% for k,v,j in room_tables %}
+    <tr><td class="solid">{{ k }}</td><td class="solid">{{ v }}</td><td class= "solid">{{ j }}</td></tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% if inquiry %}
+{%  if not room_tables %}
+<p id = "error">很抱歉，没有查询到任何您需要的数据</p>
+{% endif %}
+{% endif %}
+{% endblock %}
