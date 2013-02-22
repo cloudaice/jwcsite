@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% end %}</title>
     <meta http-equiv='Content-Type' content='text/html'; charset='utf-8'/>
     <meta http-equiv='Content-Language' content = 'zh-cn'/>
     <meta name="keywords" content ="django.jwcsite"/>
@@ -14,7 +14,6 @@
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
     
-    
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -22,9 +21,9 @@
     </style>
 
     <script src"/static/js/jquery-1.7.1.min.js"></script>
+
     <!--google analysic-->
     <script type="text/javascript">
-
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-28805988-2']);
         _gaq.push(['_trackPageview']);
@@ -34,7 +33,6 @@
          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
          })();
-
      </script>
 </head>
 <body >
@@ -60,21 +58,11 @@
     
    <div class="container">
     <div class= "content">
-    {% block content %}{% endblock %}
+    {% block content %}{% end %}
    </div>
     <footer>
-    <p>made by <a href="http://www.cloudaice.com" target="_blank" tilte= "cloudaice">Xiang Chao</a>@ 2012 
-        </p>
-      </footer>
-  </div>
-      
- <!--   <footer>
-    {% block footer %}
-    <hr>
-    <p>made by 
-    <a href = "http://www.cloudaice.com">cloudaice</a><br>有任何问题建议，请向我们<a href="/feedback/">反馈</a></p>
-    {% endblock %}
+    <p>made by <a href="http://www.cloudaice.com" target="_blank" tilte= "cloudaice">Xiang Chao</a>@ 2012</p>
     </footer>
-  -->
+  </div>
 </body>
 </html>
