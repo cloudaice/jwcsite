@@ -47,7 +47,7 @@ class Chengji(object):
             print "%s," * 10 % row
 
 if __name__ == "__main__":
-    with open(current_dir + 'chengji.html', 'r') as html:
+    with open(current_dir + '../htmls/chengji.html', 'r') as html:
         html = html.read()
         html = escap.escap(html)
         html = Chengji(html)
