@@ -1,9 +1,9 @@
 #-*-coding: utf-8-*-
 import requests
-import json
 import sys
 import config
 sys.path.append(sys.path[0] + '/parse')
+from parse_chengji import Chengji
 
 
 class Get_html(object):
@@ -25,7 +25,7 @@ class Post_html(object):
         self.parame = parame
 
     def __call__(self):
-        r = requests.post(self.url, data=json.dumps(self.parame), headers=self.headers)
+        r = requests.post(self.url, data=self.parame, headers=self.headers)
         r.encoding = 'GBK'
         html = r.text
         return html
@@ -47,6 +47,14 @@ class Do_pic(object):
         return True
             
 if __name__ == '__main__':
-    url = config.url_p
-    down = Do_pic(url)
-    down()
+    url = config.url_chengji
+    headers = config.headers_chengji
+    parame = {'selectXQ': 'all',
+              'LB': '1',
+              'Submit': '查询成绩'
+              }
+    down = Post_html(url, headers, parame)
+    html = down()
+    html = Chengji(html)
+    html()
+    html.show()
