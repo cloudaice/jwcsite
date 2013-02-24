@@ -41,8 +41,7 @@ class jwc():
 
     def get_html(self):
         req = urllib2.Request(
-                self.url_login,
-                urllib.urlencode(self.parameter)
+                self.url_login, urllib.urlencode(self.parameter)
                 )
         jump = urllib2.urlopen(req)
         data = jump.read()
@@ -153,6 +152,3 @@ if __name__ == '__main__':
     s=tp.get_status()
     for key in s:
         print key
-
-
-

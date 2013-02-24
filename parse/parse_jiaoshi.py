@@ -13,4 +13,6 @@ class Jiaoshi(object):
         assert(self.soup.name == '[document]')
 
     def __call__(self):
-        div = self.soup.html.find(id='spacemain').find(calss_='center')
+        div = self.soup.html.find(id='spacemain').find(class_='center')
+        table = div.find('table', bgcolor='#FFFFFF')
+        print table
