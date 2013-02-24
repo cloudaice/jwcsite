@@ -26,7 +26,6 @@ class Chengji(object):
             pass
 
         table = filter(lambda x: hasattr(x, 'name'), div[1].contents)
-        table = filter(lambda x: hasattr(x, 'name'), table[0].contents)
         for row in table:
             this_row = ['' for _ in range(10)]
             row_iter = row.stripped_strings
@@ -43,6 +42,7 @@ class Chengji(object):
             self.chengji.append(tuple(this_row))
 
     def show(self):
+        print self.student_num
         for row in self.chengji:
             print "%s," * 10 % row
 
