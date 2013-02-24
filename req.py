@@ -47,14 +47,4 @@ class Do_pic(object):
         return True
             
 if __name__ == '__main__':
-    url = config.url_chengji
-    headers = config.headers_chengji
-    parame = {'selectXQ': 'all',
-              'LB': '1',
-              'Submit': '查询成绩'
-              }
-    down = Post_html(url, headers, parame)
-    html = down()
-    html = Chengji(html)
-    html()
-    html.show()
+    pass
