@@ -18,4 +18,5 @@ if __name__ == '__main__':
     html = down()
     html = Jiaoshi(html)
     html()
-
+    html.show()
+    html.to_database()
