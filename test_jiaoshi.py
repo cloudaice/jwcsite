@@ -19,4 +19,4 @@ if __name__ == '__main__':
     html = Jiaoshi(html)
     html()
     html.show()
-    html.to_database()
+    html.save_database('01')

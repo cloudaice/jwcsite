@@ -1,9 +1,14 @@
 #-*-coding: utf-8 -*-
 from bs4 import BeautifulSoup as BS
 import sys
+sys.path.append(sys.path[0] + '/../')
 import datetime
+import config
+import Mongo
 
 current_dir = sys.path[0] + '/'
+cnn = Mongo.conn()
+db = cnn['jwcsite']
 
 
 def add_day(start_date, adder):
@@ -37,6 +42,17 @@ class Jiaoshi(object):
         for room, status in self.rooms:
             print room, status
 
-    def to_database(self, week):
+    def save_database(self, week):
         week = int(week)
-        print add_day('2013-02-26', week)
+        tern_start_day = config.tern_start_day
+        week_start_date = add_day(tern_start_day, week * 7)
+        docs = []
+        for room, status in self.rooms:
+            doc = {'roomname': room, 'campus': '一校区'}
+
+
+        for doc in docs:
+
+            
+            
+            
