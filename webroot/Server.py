@@ -8,6 +8,7 @@ from lib import Mongo
 import tornado.web
 import tornado.ioloop
 from tornado.httpserver import HTTPServer
+from tornado.escape import json_encode
 
 cnn = Mongo.conn()
 db = cnn['jwcsite']
@@ -24,11 +25,14 @@ class Classroom(tornado.web.RequestHandler):
 
     def post(self):
         date = self.get_argument('date')
-        section_start = self.get_argument('section_start')
-        section_end = self.get_argument('sections_end')
+        section_start = int(self.get_argument('section_start'))
+        section_end = int(self.get_argument('section_end'))
         docs = db.Jiaoshi.find({'date': date}, {'roomname': 1, 'status': 1})
         docs = filter(lambda x: x['status'][section_start - 1:section_end] == '0' * (section_end - section_start + 1), docs)
-        self.render('home.html', room_table=docs)
+        for doc in docs:
+            del doc['_id']
+        #self.render('home.html', room_table=docs)
+        self.write(json_encode(docs))
 
 
 class Feedback(tornado.web.RequestHandler):
