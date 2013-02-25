@@ -24,6 +24,7 @@ class Jiaoshi(object):
                 all_colors.append(td.get('bgcolor'))
             week_status = ''.join(['0' if color == '#FFFFFF' else '1' for color in all_colors])
             self.rooms.append((room_name, week_status))
+        return self.names
 
     def show(self):
         for room, status in self.rooms:

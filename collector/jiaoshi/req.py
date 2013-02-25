@@ -1,7 +1,7 @@
 #-*-coding: utf-8-*-
 import requests
 import sys
-sys.append(sys.path[0] + '/../../')
+sys.path.append(sys.path[0] + '/../../')
 
 
 class Get_html(object):
