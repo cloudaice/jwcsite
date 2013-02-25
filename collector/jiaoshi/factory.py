@@ -1,5 +1,8 @@
 #-*-coding:utf-8-*-
 
+from savedb import Savedb
+from parse_jiaoshi import Jiaoshi
+
 
 class CollectJiaoshi(object):
     def __init__(self, week, campus):
@@ -9,8 +12,4 @@ class CollectJiaoshi(object):
     def __call__(self, req):
         html = req()
         docs = Jiaoshi(html)()
-        save(self.week, self.campus, docs)
-
-if __name__ == "__main__":
-    pass
-
+        Savedb(self.week, self.campus, docs)

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+
 import sys
-sys.path.append(sys.path[0] + '/parse')
-from parse_jiaoshi import Jiaoshi
+sys.path.append(sys.path[0] + '/../../')
 import config
-from req import *
+from factory import CollectJiaoshi
+from req import Post_html
 
 
 if __name__ == '__main__':
@@ -18,6 +19,4 @@ if __name__ == '__main__':
     url = config.url_jiaoshi
     headers = config.headers_chengji
     req = Post_html(url, headers, parame)
-    parse = Jiaoshi()
-    save = savedb()
-
+    collect(req)

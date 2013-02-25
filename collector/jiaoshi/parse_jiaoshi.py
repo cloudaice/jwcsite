@@ -1,16 +1,8 @@
 #-*-coding: utf-8 -*-
 
 import sys
-sys.path.append(sys.path[0] + '/../../lib')
+sys.path.append(sys.path[0] + '/../../')
 from bs4 import BeautifulSoup as BS
-sys.path.append(sys.path[0] + '/../')
-import datetime
-import config
-import Mongo
-
-current_dir = sys.path[0] + '/'
-cnn = Mongo.conn()
-db = cnn['jwcsite']
 
 
 class Jiaoshi(object):
@@ -36,8 +28,3 @@ class Jiaoshi(object):
     def show(self):
         for room, status in self.rooms:
             print room, status
-
-
-            
-            
-            
