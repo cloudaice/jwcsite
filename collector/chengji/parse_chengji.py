@@ -1,11 +1,8 @@
 #-*-coding:utf-8-*-
 
 import sys
-sys.path.append(sys.path[0] + '/../../lib')
+sys.path.append(sys.path[0] + '/../../')
 from bs4 import BeautifulSoup as BS
-import escap
-
-current_dir = sys.path[0] + '/'
 
 
 class Chengji(object):
@@ -47,11 +44,3 @@ class Chengji(object):
         print self.student_num
         for row in self.chengji:
             print "%s," * 10 % row
-
-if __name__ == "__main__":
-    with open(current_dir + '../htmls/chengji.html', 'r') as html:
-        html = html.read()
-        html = escap.escap(html)
-        html = Chengji(html)
-    html()
-    html.show()

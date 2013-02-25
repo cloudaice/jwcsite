@@ -8,7 +8,7 @@ from req import Post_html
 
 
 if __name__ == '__main__':
-    week = '01'
+    week = '02'
     campus = '一校区'
     collect = CollectJiaoshi(week, campus)
     parame = {'JS': '',
