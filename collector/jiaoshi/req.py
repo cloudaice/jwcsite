@@ -1,9 +1,7 @@
 #-*-coding: utf-8-*-
 import requests
 import sys
-import config
-sys.path.append(sys.path[0] + '/parse')
-from parse_chengji import Chengji
+sys.append(sys.path[0] + '/../../')
 
 
 class Get_html(object):
@@ -37,9 +35,9 @@ class Do_pic(object):
 
     def __call__(self):
         try:
-            r = requests.get(url)
+            r = requests.get(self.url)
             assert(r.status_code == 200)
-            name = url.split('/')[-1].strip()
+            name = self.url.split('/')[-1].strip()
         except:
             return False
         with open('image/' + name, 'w') as f:
