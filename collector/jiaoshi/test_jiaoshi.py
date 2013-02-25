@@ -7,16 +7,17 @@ from req import *
 
 
 if __name__ == '__main__':
+    week = '01'
+    campus = '一校区'
+    collect = CollectJiaoshi(week, campus)
     parame = {'JS': '',
-              'ZC': '01',
-              'XQ': '一校区'.decode('utf-8').encode('gb2312'),
+              'ZC': week,
+              'XQ': campus.decode('utf-8').encode('gb2312'),
               'submit2': '全部浏览'.decode('utf-8').encode('gb2312')
               }
     url = config.url_jiaoshi
     headers = config.headers_chengji
-    down = Post_html(url, headers, parame)
-    html = down()
-    html = Jiaoshi(html)
-    html()
-    html.show()
-    html.save_database('01')
+    req = Post_html(url, headers, parame)
+    parse = Jiaoshi()
+    save = savedb()
+
