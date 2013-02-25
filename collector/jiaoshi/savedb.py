@@ -30,7 +30,7 @@ class Savedb(object):
             status = map(lambda x, y: status[x:y], range(0, 35, 5), range(5, 40, 5))
             for i, state in enumerate(status):
                 doc = {'roomname': room, 'campus': campus,
-                       'date': add_day(tern_start_day, week * 7 + i),
+                       'date': add_day(tern_start_day, (week - 1) * 7 + i),
                        'status': state
                        }
                 self.docs.append(doc)
