@@ -8,8 +8,10 @@
     </div>
     {% if room_table %}
         <table class="table table-striped">
-            {% for room in room_table %}
-            <tr><td class="solid">{{ room['roomname'] }}</td></tr>
+            {% for i in range(len(room_table)) %}
+            <tr>
+            <td class="solid">{{ room_table[i]['roomname'] }}</td></tr>
+            </tr>
             {% end %}
         </table>
     {% end %}
