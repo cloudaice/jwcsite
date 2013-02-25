@@ -13,13 +13,6 @@ cnn = Mongo.conn()
 db = cnn['jwcsite']
 
 
-def add_day(start_date, adder):
-    start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d')
-    delta = datetime.timedelta(days=adder)
-    result_date = start_date + delta
-    return result_date.strftime('%Y-%m-%d')
-
-
 class Jiaoshi(object):
     def __init__(self, html):
         self.html = html
@@ -44,16 +37,6 @@ class Jiaoshi(object):
         for room, status in self.rooms:
             print room, status
 
-    def save_database(self, week):
-        week = int(week)
-        tern_start_day = config.tern_start_day
-        week_start_date = add_day(tern_start_day, week * 7)
-        docs = []
-        for room, status in self.rooms:
-            doc = {'roomname': room, 'campus': '一校区'}
-
-
-        for doc in docs:
 
             
             
