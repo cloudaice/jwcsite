@@ -1,6 +1,8 @@
 #-*-coding:utf-8-*-
-from bs4 import BeautifulSoup as BS
+
 import sys
+sys.path.append(sys.path[0] + '/../../lib')
+from bs4 import BeautifulSoup as BS
 import escap
 current_dir = sys.path[0] + '/'
 
