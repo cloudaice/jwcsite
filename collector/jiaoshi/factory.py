@@ -12,4 +12,4 @@ class CollectJiaoshi(object):
     def __call__(self, req):
         html = req()
         docs = Jiaoshi(html)()
-        Savedb(self.week, self.campus, docs)
+        Savedb(self.week, self.campus, docs)()
