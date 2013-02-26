@@ -52,7 +52,6 @@ class Geren(object):
         except:
             return False
         oid = fs.put(myimage, content_type='image/jpeg', imagename=self.student_num)
-        image = fs.get(oid).read()
 
 
 if __name__ == "__main__":
