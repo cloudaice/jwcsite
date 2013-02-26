@@ -5,10 +5,10 @@ sys.path.append(sys.path[0] + '/../../')
 import config
 from factory import CollectGeren
 from req import Get_html
-from pymongo import Collection
+from pymongo import Connection
 import time
 
-cnn = Collection('localhost', 27018, max_pool_size=10)
+cnn = Connection('localhost', 27018, max_pool_size=10)
 db = cnn['jwcsite']
 table = db.PersonInfo
 
