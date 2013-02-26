@@ -12,4 +12,3 @@
   * name
   * phone_num
   * pic
-  * 

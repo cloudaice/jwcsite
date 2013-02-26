@@ -3,7 +3,6 @@
 import sys
 sys.path.append(sys.path[0] + '/../../lib')
 from bs4 import BeautifulSoup as BS
-import escap
 import requests
 from pymongo import Connection
 from gridfs import GridFS
@@ -51,13 +50,4 @@ class Geren(object):
             assert(r.status_code == 200)
         except:
             return False
-        oid = fs.put(myimage, content_type='image/jpeg', imagename=self.student_num)
-        image = fs.get(oid).read()
-
-
-if __name__ == "__main__":
-    with open(current_dir + 'geren.html') as html:
-        html = html.read()
-        html = escap.escap(html)
-        html = Geren(html)
-    html()
+        fs.put(r.content, content_type='image/jpeg', filename=self.student_num)
