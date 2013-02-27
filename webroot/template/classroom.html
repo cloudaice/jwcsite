@@ -2,22 +2,15 @@
 {% block title %} 空闲教室查询 {% end %}
 {% block content %}
     <div class="btn-group" data-toggle="buttons-checkbox">
-        <button type="button" class="btn btn-primary">一</button>
-        <button type="button" class="btn btn-primary">二</button>
-        <button type="button" class="btn btn-primary">三</button>
-        <button type="button" class="btn btn-primary">四</button>
-        <button type="button" class="btn btn-primary">五</button>
+        <button type="button" class="btn btn-primary">第一节</button>
+        <button type="button" class="btn btn-primary">第二节</button>
+        <button type="button" class="btn btn-primary">第三节</button>
+        <button type="button" class="btn btn-primary">第四节</button>
+        <button type="button" class="btn btn-primary">第五节</button>
     </div>
     <ul class="nav nav-tabs", id='buildTab'>
-        <li><a href="#zhengxin">正心</a></li>
-        <li><a href="#chengyi">诚意</a></li>
-        <li><a href="#zhizhi">致知</a></li>
+        <li><a href="#zhengxin" data-toggle="tab">正心</a></li>
+        <li><a href="#chengyi" data-toggle="tab">诚意</a></li>
+        <li><a href="#zhizhi" data-toggle="tab">致知</a></li>
     </ul>
-    <script>
-        $('#buildTab a').click(function (e) {
-            e.preventDefault();
-            $(this).tab('show');
-        })
-    </script>
 {% end %}
-
