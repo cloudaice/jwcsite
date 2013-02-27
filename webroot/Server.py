@@ -21,6 +21,9 @@ class Home(tornado.web.RequestHandler):
 
 class Classroom(tornado.web.RequestHandler):
     def get(self):
+        self.render('classroom.html')
+
+    def post(self):
         date = self.get_argument('date')
         section_start = int(self.get_argument('section_start'))
         section_end = int(self.get_argument('section_end'))
@@ -29,8 +32,7 @@ class Classroom(tornado.web.RequestHandler):
         for doc in docs:
             del doc['_id']
             del doc['status']
-        self.render('classroom.html', room_table=docs)
-        #self.write(json_encode(docs))
+        self.write(json_encode(docs))
 
 
 class Feedback(tornado.web.RequestHandler):

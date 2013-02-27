@@ -2,19 +2,22 @@
 {% block title %} 空闲教室查询 {% end %}
 {% block content %}
     <div class="btn-group" data-toggle="buttons-checkbox">
-        <button type="button" class="btn btn-primary">左</button>
-        <button type="button" class="btn btn-primary">中</button>
-        <button type="button" class="btn btn-primary">右</button>
+        <button type="button" class="btn btn-primary">一</button>
+        <button type="button" class="btn btn-primary">二</button>
+        <button type="button" class="btn btn-primary">三</button>
+        <button type="button" class="btn btn-primary">四</button>
+        <button type="button" class="btn btn-primary">五</button>
     </div>
-    {% if room_table %}
-        <table class="table table-striped">
-            {% for i in range(len(room_table)) %}
-            <tr>
-            <td class="solid">{{ room_table[i]['roomname'] }}</td></tr>
-            </tr>
-            {% end %}
-        </table>
-    {% end %}
+    <ul class="nav nav-tabs", id='myTab'>
+        <li><a href="#">诚意</a></li>
+        <li><a href="#">正心</a></li>
+        <li><a href="#">致知</a></li>
+    </ul>
+    <script>
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        })
+    </script>
 {% end %}
-
 
