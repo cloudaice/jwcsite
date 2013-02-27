@@ -3,12 +3,11 @@
 import sys
 sys.path.append(sys.path[0] + '/../../lib')
 from bs4 import BeautifulSoup as BS
-import escap
 import requests
-from pymongo import Connection
-from gridfs import GridFS
-db = Connection().images
-fs = GridFS(db)
+#from pymongo import Connection
+#from gridfs import GridFS
+#db = Connection().images
+#fs = GridFS(db)
 
 
 class Geren(object):
@@ -23,7 +22,7 @@ class Geren(object):
         tbody = forms.find('tbody')
         if not tbody:
             tbody = forms.find('table')
-            print tbody
+            #print tbody
         trs = filter(lambda x: hasattr(x, 'name') and x.name == 'tr', tbody.contents)
         for i, tr in enumerate(trs):
             if i == 6:
@@ -42,6 +41,9 @@ class Geren(object):
                     self.profile[key] = value
                 except StopIteration:
                     break
+        return self.profile
+
+    def show(self):
         for key in self.profile.keys():
             print key, self.profile[key]
     
@@ -51,12 +53,4 @@ class Geren(object):
             assert(r.status_code == 200)
         except:
             return False
-        oid = fs.put(myimage, content_type='image/jpeg', imagename=self.student_num)
-
-
-if __name__ == "__main__":
-    with open(current_dir + 'geren.html') as html:
-        html = html.read()
-        html = escap.escap(html)
-        html = Geren(html)
-    html()
+        #fs.put(r.content, content_type='image/jpeg', filename=self.student_num)
