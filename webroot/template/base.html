@@ -17,10 +17,9 @@
       }
     </style>
 
-    <script src="/static/js/jquery-1.9.1.min.js"></script>
-    <script src="/static/js/bootstrap.js"></script>
 </head>
 <body >
+    <div id="warp">
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -36,20 +35,26 @@
               <li ><a href="/viewkb/">查询课表</a></li>
               <li ><a href="/feedback/">反馈</a></li>
             </ul>
-          </div><!--/.nav-collapse -->
+          </div>
         </div>
       </div>
     </div>
     
    <div class="container">
-    <div class= "content">
-    {% block content %}{% end %}
+     <div class= "content">
+     {% block content %}{% end %}
+     </div>
    </div>
-    <footer class="footer">
+   </div>
+    <div id="footer">
       <div class="container">
-        <p>made by<a href="http://www.cloudaice.com" target="_blank" tilte= "cloudaice">Xiang Chao</a>@ 2012</p>
+          <p class="muted credit">
+          made by<a href="http://www.cloudaice.com" target="_blank" tilte= "cloudaice">Xiang Chao</a>
+          @ 2012.
+          </p>
       </div>
-    </footer>
-  </div>
+    </div>
+    <script src="/static/js/jquery-1.9.1.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
 </body>
 </html>
