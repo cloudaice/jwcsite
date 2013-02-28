@@ -39,8 +39,6 @@ class Classroom(tornado.web.RequestHandler):
         docs = db.Jiaoshi.find({'date': date}, {'roomname': 1, 'status': 1})
         docs = filter(escap, docs)
         docs = [doc['roomname'] for doc in docs]
-        for doc in docs:
-            print doc
         self.write(json_encode(docs))
 
 
