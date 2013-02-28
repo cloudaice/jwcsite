@@ -1,4 +1,11 @@
 $(document).ready(function(){
+    var maps = {
+        "第一节": 0,
+        "第二节": 1,
+        "第三节": 2,
+        "第四节": 3,
+        "第五节": 4,
+    };
     function check_checkbox(){
         var sections = new Array() ;
         $('#sections button').each(function(){
@@ -32,12 +39,19 @@ $(document).ready(function(){
         e.preventDefault();
         $(this).tab('show');
         var buildname = $(this).text();
-        console.debug(buildname);
+        //console.debug(buildname);
         var sections = check_checkbox();
-        for (var i in sections){
-            console.debug(sections[i]);
+        if (sections.length != 0){
+            var num_sections = new Array();
+            for (var i in sections){
+                num_sections.push(maps[sections[i]]);
+            }
+            var param = {
+                "build": buildname,
+                "param": num_sections
+            };
+            console.debug(param);
         }
-
     });
 
     //点击button的时候，检查building是否已经选择, 有则显示，否则不显示
@@ -45,11 +59,22 @@ $(document).ready(function(){
         $(this).button('toggle');
         var builds = check_building();
         if(builds.length != 0){
-            console.debug(builds[0]);
+            //console.debug(builds[0]);
             var sections = check_checkbox();
+            var num_sections = new Array();
             for (var i in sections){
-                console.debug(sections[i]);
+                num_sections.push(maps[sections[i]]);
             }
+            var url = '/classroom'; 
+            param = {
+                "build": builds[0],
+                "sections": num_sections
+            }
+            console.debug(param);
+            $('#room_table').html('hello');
+            //$.post(url, param, function(data){
+
+            //});  
         }
     });
 });
