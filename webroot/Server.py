@@ -25,8 +25,8 @@ class Classroom(tornado.web.RequestHandler):
 
     def post(self):
         date = self.get_argument('date')
-        build = int(self.get_argument('build'))
-        param = int(self.get_argument('param'))
+        build = self.get_argument('build')
+        param = self.get_argument('param')
 
         def escap(x):
             for i in param:
