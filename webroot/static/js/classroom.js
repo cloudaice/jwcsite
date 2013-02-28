@@ -54,11 +54,17 @@ $(document).ready(function(){
             };
             console.debug(param);
             $.post(url, param, function(data){
-                var room_table  = "<table class='table table-striped'>";
-                data.each
-
-
-
+                var room_table  = "<table class='table table-striped'><tr>";
+                for (var i in data){
+                   room_table += "<td class='solid'>";
+                   room_table += data[i];
+                   room_table += "</td>";
+                   if ((room_table + 1) % 3 == 0){
+                       room_table += "</tr><tr>";
+                   }
+                }
+                room_table += "</tr></table>";
+                $('#room_table').html(room_table);
             });
         }
     });
@@ -82,8 +88,7 @@ $(document).ready(function(){
             console.debug(param);
             //$.post(url, param, function(data){
                 var room_table = "<table class='table table-striped'>"
-                $('#room_table').html('hello');
-
+                //$('#room_table').html('hello');
             //});  
         }
     });
