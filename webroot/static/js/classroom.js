@@ -3,6 +3,5 @@ $(document).ready(function(){
         e.preventDefault();
         $(this).tab('show');
     });
-    var s = $('.nav-tabs').button();
     console.debug('hello');
 });
