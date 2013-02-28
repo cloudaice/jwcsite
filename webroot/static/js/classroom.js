@@ -87,7 +87,12 @@ $(document).ready(function(){
         if(builds.length != 0){
             //console.debug(builds[0]);
             var sections = check_checkbox();
-            if (sections.length != 0){
+            if (sections.length == 0){
+                $('#myModal').on('hidden', function(){
+                    $('#room_table').html('');
+                })
+                $('#myModal').modal('show');
+            }else{
                 var num_sections = '';
                 for (var i in sections){
                     num_sections += maps[sections[i]];
