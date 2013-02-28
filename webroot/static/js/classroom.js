@@ -71,8 +71,9 @@ $(document).ready(function(){
                 "sections": num_sections
             }
             console.debug(param);
-            $('#room_table').html('hello');
             //$.post(url, param, function(data){
+                var room_table = "<table class='table table-striped'>"
+                $('#room_table').html('hello');
 
             //});  
         }
