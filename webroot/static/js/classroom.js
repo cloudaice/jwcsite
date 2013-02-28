@@ -1,6 +1,9 @@
 $(document).ready(function(){
     function check_checkbox(){
-
+        $('#sections button').each(function(){
+            console.debug($(this).attr('class'));
+            console.debug($(this).text());
+        });
     }
     $('#buildTab a').click(function (e) {
         e.preventDefault();
@@ -8,6 +11,11 @@ $(document).ready(function(){
         var buildname = $(this).text();
         console.debug($(this).text())
 
+    });
+
+    $('#sections button').click(function(){
+        $(this).tab('show');
+        check_checkbox();
     });
 
     console.debug('hello');
