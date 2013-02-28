@@ -1,10 +1,10 @@
 $(document).ready(function(){
     var maps = {
-        "第一节": 0,
-        "第二节": 1,
-        "第三节": 2,
-        "第四节": 3,
-        "第五节": 4,
+        "第一节": '0',
+        "第二节": '1',
+        "第三节": '2',
+        "第四节": '3',
+        "第五节": '4',
     };
     function check_checkbox(){
         var sections = new Array() ;
@@ -44,7 +44,7 @@ $(document).ready(function(){
         if (sections.length != 0){
             var num_sections = new Array();
             for (var i in sections){
-                num_sections.push(maps[sections[i]]);
+                num_sections += maps[sections[i]];
             }
             var url = '/classroom';
             var param = {
@@ -76,9 +76,9 @@ $(document).ready(function(){
         if(builds.length != 0){
             //console.debug(builds[0]);
             var sections = check_checkbox();
-            var num_sections = new Array();
+            var num_sections = '';
             for (var i in sections){
-                num_sections.push(maps[sections[i]]);
+                num_sections += maps[sections[i]];
             }
             var url = '/classroom'; 
             param = {
