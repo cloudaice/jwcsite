@@ -54,7 +54,7 @@ $(document).ready(function(){
                 "build": buildname,
                 "param": num_sections
             };
-            console.debug(param);
+            //console.debug(param);
             $.ajax({
                 type: 'POST',
                 url: url, 
@@ -62,10 +62,9 @@ $(document).ready(function(){
                 dataType: "json",
                 success: function(data){
                     var room_table  = "<table class='table table-striped'><tr>";
-                    console.debug(data);
+                    //console.debug(data);
                     //var data = data['roomnames'];
                     for (var i in data){
-                       console.debug(data[i]);
                        room_table += "<td class='solid'>";
                        room_table += data[i];
                        room_table += "</td>";
@@ -103,7 +102,7 @@ $(document).ready(function(){
                     "build": builds[0],
                     "param": num_sections
                 }
-                console.debug(param);
+                //console.debug(param);
                 $.ajax({
                     type: 'POST',
                     url: url,
@@ -111,10 +110,9 @@ $(document).ready(function(){
                     dataType: 'json',
                     success: function(data){
                         var room_table  = "<table class='table table-striped'><tr>";
-                        console.debug(data);
+                        //console.debug(data);
                         //var data = data['roomnames'];
                         for (var i in data){
-                           console.debug(data[i]);
                            room_table += "<td class='solid'>";
                            room_table += data[i];
                            room_table += "</td>";
