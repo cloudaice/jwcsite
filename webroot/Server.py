@@ -26,21 +26,21 @@ class Classroom(tornado.web.RequestHandler):
     def post(self):
         date = self.get_argument('date')
         build = self.get_argument('build')
-        print 'build'
         param = self.get_argument('param')
-        print 'param'
 
         def escap(x):
             for i in param:
                 if x['status'][int(i)] != '0':
                     return False
-            if x['roomname'] != build:
+            if build not in x['roomname']:
                 return False
             return True
 
         docs = db.Jiaoshi.find({'date': date}, {'roomname': 1, 'status': 1})
         docs = filter(escap, docs)
         docs = [doc['roomname'] for doc in docs]
+        for doc in docs:
+            print doc
         self.write(json_encode(docs))
 
 

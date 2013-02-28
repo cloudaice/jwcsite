@@ -53,18 +53,27 @@ $(document).ready(function(){
                 "param": num_sections
             };
             console.debug(param);
-            $.post(url, param, function(data){
-                var room_table  = "<table class='table table-striped'><tr>";
-                for (var i in data){
-                   room_table += "<td class='solid'>";
-                   room_table += data[i];
-                   room_table += "</td>";
-                   if ((room_table + 1) % 3 == 0){
-                       room_table += "</tr><tr>";
-                   }
+            $.ajax({
+                type: 'POST',
+                url: url, 
+                data: param,
+                dataType: "json",
+                success: function(data){
+                    var room_table  = "<table class='table table-striped'><tr>";
+                    console.debug(data);
+                    //var data = data['roomnames'];
+                    for (var i in data){
+                       console.debug(data[i]);
+                       room_table += "<td class='solid'>";
+                       room_table += data[i];
+                       room_table += "</td>";
+                       if ((i + 1) % 3 == 0){
+                           room_table += "</tr><tr>";
+                       }
+                    }
+                    room_table += "</tr></table>";
+                    $('#room_table').html(room_table);
                 }
-                room_table += "</tr></table>";
-                $('#room_table').html(room_table);
             });
         }
     });
