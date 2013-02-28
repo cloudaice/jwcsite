@@ -46,11 +46,19 @@ $(document).ready(function(){
             for (var i in sections){
                 num_sections.push(maps[sections[i]]);
             }
+            var url = '/classroom';
             var param = {
+                "date": '2013-02-28',
                 "build": buildname,
                 "param": num_sections
             };
             console.debug(param);
+            $.post(url, param, function(data){
+                var room_table  = "<table class='table table-striped'>";
+
+
+
+            });
         }
     });
 

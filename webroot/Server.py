@@ -25,10 +25,19 @@ class Classroom(tornado.web.RequestHandler):
 
     def post(self):
         date = self.get_argument('date')
-        section_start = int(self.get_argument('section_start'))
-        section_end = int(self.get_argument('section_end'))
+        build = int(self.get_argument('build'))
+        param = int(self.get_argument('param'))
+
+        def escap(x):
+            for i in param:
+                if x['status'][i] != '0':
+                    return False
+            if x['roomname'] != build:
+                return False
+            return True
+
         docs = db.Jiaoshi.find({'date': date}, {'roomname': 1, 'status': 1})
-        docs = filter(lambda x: x['status'][section_start - 1:section_end] == '0' * (section_end - section_start + 1), docs)
+        docs = filter(escap, docs)
         for doc in docs:
             del doc['_id']
             del doc['status']
