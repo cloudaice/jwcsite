@@ -5,6 +5,8 @@ $(document).ready(function(){
             console.debug($(this).text());
         });
     }
+
+
     $('#buildTab a').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
@@ -14,7 +16,7 @@ $(document).ready(function(){
     });
 
     $('#sections button').click(function(){
-        $(this).tab('show');
+        $(this).button('toggle');
         check_checkbox();
     });
 
