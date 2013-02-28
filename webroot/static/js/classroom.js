@@ -41,7 +41,9 @@ $(document).ready(function(){
         var buildname = $(this).text();
         //console.debug(buildname);
         var sections = check_checkbox();
-        if (sections.length != 0){
+        if (sections.length == 0){
+            $('#myModal').modal('show');
+        }else{
             var num_sections = new Array();
             for (var i in sections){
                 num_sections += maps[sections[i]];
@@ -85,20 +87,41 @@ $(document).ready(function(){
         if(builds.length != 0){
             //console.debug(builds[0]);
             var sections = check_checkbox();
-            var num_sections = '';
-            for (var i in sections){
-                num_sections += maps[sections[i]];
+            if (sections.length != 0){
+                var num_sections = '';
+                for (var i in sections){
+                    num_sections += maps[sections[i]];
+                }
+                var url = '/classroom'; 
+                param = {
+                    'date': '2013-02-28',
+                    "build": builds[0],
+                    "param": num_sections
+                }
+                console.debug(param);
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: param, 
+                    dataType: 'json',
+                    success: function(data){
+                        var room_table  = "<table class='table table-striped'><tr>";
+                        console.debug(data);
+                        //var data = data['roomnames'];
+                        for (var i in data){
+                           console.debug(data[i]);
+                           room_table += "<td class='solid'>";
+                           room_table += data[i];
+                           room_table += "</td>";
+                           if ((i + 1) % 3 == 0){
+                               room_table += "</tr><tr>";
+                           }
+                        }
+                        room_table += "</tr></table>";
+                        $('#room_table').html(room_table);
+                    }
+                });  
             }
-            var url = '/classroom'; 
-            param = {
-                "build": builds[0],
-                "sections": num_sections
-            }
-            console.debug(param);
-            //$.post(url, param, function(data){
-                var room_table = "<table class='table table-striped'>"
-                //$('#room_table').html('hello');
-            //});  
         }
     });
 });
