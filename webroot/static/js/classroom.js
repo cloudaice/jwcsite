@@ -58,6 +58,7 @@ $(document).ready(function(){
         //console.debug(buildname);
         var sections = check_checkbox();
         if (sections.length == 0){
+            $('#myModalLabel').html('请选择相应的节次');
             $('#myModal').modal('show');
         }else{
             var num_sections = new Array();
@@ -106,6 +107,7 @@ $(document).ready(function(){
                 $('#myModal').on('hidden', function(){
                     $('#room_table').html('');
                 })
+                $('#myModalLabel').html('请选择相应的节次');
                 $('#myModal').modal('show');
             }else{
                 var num_sections = '';
