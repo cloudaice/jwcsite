@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block title %} 空闲教室查询 {% end %}
 {% block content %}
+    <div class="input-append date" id="dp3" data-date-format="yyyy-mm-dd">
+	<input class="span2" size="16" type="text" readonly="">
+	<span class="add-on"><i class="icon-th"></i></span>
+    </div>
     <div class="btn-group"  id='sections'>
         <button type="button" class="btn btn-primary">第一节</button>
         <button type="button" class="btn btn-primary">第二节</button>
@@ -14,7 +18,6 @@
         <li><a href="#zhizhi" >致知</a></li>
     </ul>
     
-
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

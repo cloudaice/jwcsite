@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    var date = '';
     var maps = {
         "第一节": '0',
         "第二节": '1',
@@ -6,7 +7,21 @@ $(document).ready(function(){
         "第四节": '3',
         "第五节": '4',
     };
+
+    function formatdate(year, month, day){
+        if (month.toString().length == 1){
+            month = '0' + month;
+        }
+        if (day.toString().length == 1){
+            day = '0' + day;
+        }
+        return year + '-' + month + '-' + day;
+    }
     //$('.datepicker').datepicker();
+    $('#dp3').datepicker({format: 'yyyy-mm-dd', weekStart: 1}).on('changeDate', function(ev){
+        date = formatdate(ev.date.getFullYear(), ev.date.getMonth() + 1, ev.date.getDate());
+        console.debug(date);
+    });
     function check_checkbox(){
         var sections = new Array() ;
         $('#sections button').each(function(){
