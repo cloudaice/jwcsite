@@ -51,11 +51,11 @@ $(document).ready(function(){
         //$('#dp3').datepicker('hide');
         var sections = check_checkbox();
         if (sections.length == 0){
-            console.debug('section');
             $('#myModalLabel').html('请选择相应的节次');
             $('#myModal').modal('show');
             return;
         }
+        var builds = check_building();
         if(builds.length != 0){
             //console.debug(builds[0]);
             var sections = check_checkbox();
@@ -65,7 +65,7 @@ $(document).ready(function(){
             }
             var url = '/classroom'; 
             param = {
-                'date': '2013-02-28',
+                'date': date,
                 "build": builds[0],
                 "param": num_sections
             }
@@ -117,7 +117,7 @@ $(document).ready(function(){
             }
             var url = '/classroom';
             var param = {
-                "date": '2013-02-28',
+                "date": date,
                 "build": buildname,
                 "param": num_sections
             };
@@ -171,7 +171,7 @@ $(document).ready(function(){
                 }
                 var url = '/classroom'; 
                 param = {
-                    'date': '2013-02-28',
+                    'date': date,
                     "build": builds[0],
                     "param": num_sections
                 }
