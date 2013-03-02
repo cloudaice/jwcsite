@@ -18,10 +18,6 @@ $(document).ready(function(){
         return year + '-' + month + '-' + day;
     }
     //$('.datepicker').datepicker();
-    $('#dp3').datepicker({format: 'yyyy-mm-dd', weekStart: 1}).on('changeDate', function(ev){
-        date = formatdate(ev.date.getFullYear(), ev.date.getMonth() + 1, ev.date.getDate());
-        console.debug(date);
-    });
     function check_checkbox(){
         var sections = new Array() ;
         $('#sections button').each(function(){
@@ -50,6 +46,55 @@ $(document).ready(function(){
         return builds;
     }
 
+    $('#dp3').datepicker({format: 'yyyy-mm-dd', weekStart: 1}).on('changeDate', function(ev){
+        date = formatdate(ev.date.getFullYear(), ev.date.getMonth() + 1, ev.date.getDate());
+        //$('#dp3').datepicker('hide');
+        var sections = check_checkbox();
+        if (sections.length == 0){
+            console.debug('section');
+            $('#myModalLabel').html('请选择相应的节次');
+            $('#myModal').modal('show');
+            return;
+        }
+        if(builds.length != 0){
+            //console.debug(builds[0]);
+            var sections = check_checkbox();
+            var num_sections = '';
+            for (var i in sections){
+                num_sections += maps[sections[i]];
+            }
+            var url = '/classroom'; 
+            param = {
+                'date': '2013-02-28',
+                "build": builds[0],
+                "param": num_sections
+            }
+            //console.debug(param);
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: param, 
+                dataType: 'json',
+                success: function(data){
+                    var room_table  = "<table class='table table-striped'><tr>";
+                    //console.debug(data);
+                    //var data = data['roomnames'];
+                    for (var i in data){
+                       room_table += "<td class='solid'>";
+                       room_table += data[i];
+                       room_table += "</td>";
+                       if ((i + 1) % 3 == 0){
+                           room_table += "</tr><tr>";
+                       }
+                    }
+                    room_table += "</tr></table>";
+                    $('#room_table').html(room_table);
+                }
+            });  
+        }
+        //console.debug(date);
+    });
+
     //点击building 的时候,检查选择的节次并且显示.
     $('#buildTab a').click(function (e) {
         e.preventDefault();
@@ -57,6 +102,11 @@ $(document).ready(function(){
         var buildname = $(this).text();
         //console.debug(buildname);
         var sections = check_checkbox();
+        if (date == ''){
+            $('#myModalLabel').html('请选择日期');
+            $('#myModal').modal('show');
+            return;
+        }
         if (sections.length == 0){
             $('#myModalLabel').html('请选择相应的节次');
             $('#myModal').modal('show');
@@ -100,6 +150,11 @@ $(document).ready(function(){
     $('#sections button').click(function(){
         $(this).button('toggle');
         var builds = check_building();
+        if (date == ''){
+            $('#myModalLabel').html('请选择日期');
+            $('#myModal').modal('show');
+            return;
+        }
         if(builds.length != 0){
             //console.debug(builds[0]);
             var sections = check_checkbox();
