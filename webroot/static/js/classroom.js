@@ -6,6 +6,7 @@ $(document).ready(function(){
         "第四节": '3',
         "第五节": '4',
     };
+    //$('.datepicker').datepicker();
     function check_checkbox(){
         var sections = new Array() ;
         $('#sections button').each(function(){
