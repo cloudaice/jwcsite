@@ -10,4 +10,3 @@ def Score(Ra, Rb, doc):
     Ra = Ra + K * (doc['a'] - Ea)
     Rb = Rb + K * (doc['b'] - Eb)
     savedb (Ra, Rb)
-
