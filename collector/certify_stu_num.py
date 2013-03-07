@@ -25,7 +25,7 @@ def get_stu():
             except:
                 continue
     
-    for num in yuanxi_nums:
-        print num
-    print len(yuanxi_nums)
+    #for num in yuanxi_nums:
+        #print num
+    #print len(yuanxi_nums)
     return yuanxi_nums

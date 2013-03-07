@@ -7,6 +7,7 @@ download student numbers to mongodb
 import requests
 from bs4 import BeautifulSoup as BS
 from pymongo import Connection
+import certify_stu_num
 cnn = Connection('localhost', 27017, max_pool_size=10)
 db = cnn['jwcsite']
 table = db.PersonInfo
@@ -25,7 +26,14 @@ def get_num(url):
             continue
         stu_nums.append(link.get_text().strip().split('.')[0])
     print len(stu_nums)
-    #for num in stu_nums:
+    for num in stu_nums:
+        print num
+        print num[3:6]
+    faculty = certify_stu_num.get_stu()
+    stu_nums = filter(lambda x: x[3:6] in faculty, stu_nums)
+    
+    print len(stu_nums)
+    #for num in ]tu_nums:
     #    condition = {'stuid': num}
     #    doc = {'stuid': num}
     #    table.update(condition, doc, upsert=True)
