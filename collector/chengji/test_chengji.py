@@ -1,7 +1,7 @@
 # -*-coding: utf-8 -*-
 
 import sys
-sys.path.append(sys.path[0] + '/parse')
+sys.path.append(sys.path[0] + '/../../')
 import config
 from  parse_chengji import Chengji
 from req import *
