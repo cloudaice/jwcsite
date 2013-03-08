@@ -2,6 +2,7 @@
 import requests
 from bs4 import BeautifulSoup as BS
 
+#未使用
 """
 用于过滤采集到的学号，把错误的学号过滤掉
 """

@@ -12,10 +12,14 @@ class Savedb(object):
         self.stuid = stuid
         self.docs = {}
         for doc in docs:
+            if u'英文名' in doc:
+                continue
+            if u'教学班号' in doc:
+                continue
+            if u'本人' in doc:
+                continue
             if u'专业' in doc:
                 self.docs[u'专业'] = docs[doc].strip()
-            elif u'英文名' in doc:
-                self.docs[u'英文名'] = docs[doc]
             else:
                 self.docs[''.join(doc.strip().split())] = docs[doc].strip()
 
