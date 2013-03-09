@@ -19,5 +19,8 @@ if __name__ == '__main__':
         headers = config.headers_geren(stuid)
         url = config.url_geren
         req = Get_html(url, headers)
-        collect = CollectGeren(req, stuid)
+        try:
+            collect = CollectGeren(req, stuid)
+        except:
+            continue
         time.sleep(0.5)
