@@ -42,12 +42,9 @@ class Classroom(tornado.web.RequestHandler):
         self.write(json_encode(docs))
 
 
-class Feedback(tornado.web.RequestHandler):
+class About(tornado.web.RequestHandler):
     def get(self):
-        pass
-
-    def post(self):
-        pass
+        self.render('about.html')
 
 
 settings = {
@@ -58,7 +55,7 @@ settings = {
 
 application = tornado.web.Application([(r'/', Home),
                                        (r'/classroom', Classroom),
-                                       (r'/feedback', Feedback),
+                                       (r'/about', About),
                                        (r'/favicon.ico', tornado.web.StaticFileHandler, dict(path=settings['static_path'])),
                                        ], debug=True, **settings
                                       )
