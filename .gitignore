@@ -5,3 +5,4 @@ config.py
 /image
 htmls
 html
+fabfile.py
