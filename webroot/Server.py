@@ -61,6 +61,7 @@ application = tornado.web.Application([(r'/', Home),
                                       )
 
 if __name__ == "__main__":
+    port = int(sys.argv[1])
     http_server = HTTPServer(application)
-    http_server.listen(8888)
+    http_server.listen(port)
     tornado.ioloop.IOLoop.instance().start()
