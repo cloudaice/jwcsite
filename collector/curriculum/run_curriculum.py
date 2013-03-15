@@ -6,7 +6,7 @@ from factory import CollectCurriculum
 from req import Post_html
 
 if __name__ == "__main__":
-    classId = ''
+    classId = '1103101'
     collect = CollectCurriculum(classId)
     headers = config.headers_kb
     url = config.url_kb
