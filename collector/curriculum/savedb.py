@@ -13,4 +13,6 @@ class Savedb(object):
         self.docs = docs
 
     def __call__(self):
-        pass
+        for doc in self.docs:
+            doc['classId'] = self.classId
+            table.update(doc, doc, upsert=True)

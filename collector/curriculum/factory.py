@@ -11,5 +11,6 @@ class CollectCurriculum(object):
     def __call__(self, req):
         html = req()
         docs = Curriculum(html)()
-        print docs
+        for doc in docs:
+            print doc['weekday'], doc['section'], doc['course'], doc['teacher'], doc['addr'], doc['startend']
         #Savedb(self.classId, docs)()

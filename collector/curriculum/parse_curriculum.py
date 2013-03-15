@@ -108,6 +108,28 @@ class Curriculum(object):
             for text in ts:
                 self.exams.append(tuple(text.split()))
 
+        docs = []
+        for i in range(1, 8, 1):
+            for j in range(1, 6, 1):
+                for course, teac_and_addr, weeks in self.kebiao[i][j]:
+                    weekday = i
+                    section = j
+                    course = course.strip()
+                    try:
+                        teacher, addr = tuple(teac_and_addr.strip().split())
+                    except ValueError:
+                        continue
+                    startend = weeks.strip()
+                    doc = {'weekday': weekday,
+                           'section': section,
+                           'course': course,
+                           'teacher': teacher,
+                           'addr': addr,
+                           'startend': startend
+                           }
+                    docs.append(doc)
+        return docs
+            
     def showtable(self):
         for i in range(1, 8, 1):
             print self.weekdays_name[i - 1], ':'
@@ -116,7 +138,6 @@ class Curriculum(object):
                 for course, teac_and_addr, weeks in self.kebiao[i][j]:
                     print course, teac_and_addr, weeks,
                 print '\n'
-        return self.exams
         for week, day, time, addr, course in self.exams:
             print week, day, time, addr, course
 
@@ -124,5 +145,7 @@ class Curriculum(object):
 if __name__ == "__main__":
     with open(current_dir + 'kb.html', 'r') as html:
         html = Curriculum(html)
-    html()
-    html.showtable()
+    docs = html()
+    for doc in docs:
+        print doc['weekday'], doc['section'], doc['course'], doc['teacher'], doc['addr'], doc['startend']
+    #html.showtable()
