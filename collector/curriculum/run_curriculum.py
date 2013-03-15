@@ -10,7 +10,8 @@ if __name__ == "__main__":
     collect = CollectCurriculum(classId)
     headers = config.headers_kb
     url = config.url_kb
-    params = {
-            }
+    params = {'BH': classId,
+              'submit': '查询课表'.decode('utf-8').encode('gb2312')
+              }
     req = Post_html(url, headers, params)
-
+    collect(req)

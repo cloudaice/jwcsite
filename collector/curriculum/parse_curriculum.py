@@ -7,7 +7,7 @@ current_dir = sys.path[0] + '/'
 print current_dir
 
 
-class Kebiao(object):
+class Curriculum(object):
     def __init__(self, html):
         self.html = html
         self.soup = BS(html)
@@ -116,12 +116,13 @@ class Kebiao(object):
                 for course, teac_and_addr, weeks in self.kebiao[i][j]:
                     print course, teac_and_addr, weeks,
                 print '\n'
+        return self.exams
         for week, day, time, addr, course in self.exams:
             print week, day, time, addr, course
 
 
 if __name__ == "__main__":
     with open(current_dir + 'kb.html', 'r') as html:
-        html = Kebiao(html)
+        html = Curriculum(html)
     html()
     html.showtable()

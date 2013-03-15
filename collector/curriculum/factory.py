@@ -11,4 +11,5 @@ class CollectCurriculum(object):
     def __call__(self, req):
         html = req()
         docs = Curriculum(html)()
-        Savedb(self.classId, docs)()
+        print docs
+        #Savedb(self.classId, docs)()
