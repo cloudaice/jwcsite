@@ -46,6 +46,18 @@ class Curriculum(tornado.web.RequestHandler):
     def get(self):
         self.render('curriculum.html')
 
+    def post(self):
+        query_string = self.get_argument('query_string').strip()
+        print query_string
+        docs = []
+        cursor = db.Curriculum.find({"$or": [{'teacher': query_string}, {'course': query_string}]})
+        for doc in cursor:
+            del doc['_id']
+            del doc['classId']
+            if doc not in docs:
+                docs.append(doc)
+        self.write(json_encode(docs))
+
 
 class About(tornado.web.RequestHandler):
     def get(self):
