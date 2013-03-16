@@ -28,7 +28,7 @@ class Classroom(tornado.web.RequestHandler):
         build = self.get_argument('build')
         param = self.get_argument('param')
 
-        def escap(x):
+        def selection(x):
             for i in param:
                 if x['status'][int(i)] != '0':
                     return False
@@ -37,7 +37,7 @@ class Classroom(tornado.web.RequestHandler):
             return True
 
         docs = db.Jiaoshi.find({'date': date}, {'roomname': 1, 'status': 1})
-        docs = filter(escap, docs)
+        docs = filter(selection, docs)
         docs = [doc['roomname'] for doc in docs]
         self.write(json_encode(docs))
 
@@ -52,6 +52,18 @@ class About(tornado.web.RequestHandler):
         self.render('about.html')
 
 
+class Teac_Course(tornado.web.RequestHandler):
+    def post(self):
+        docs = []
+        cursor = db.Curriculum.find({}, {'teacher': 1, 'course': 1})
+        for doc in cursor:
+            if doc['teacher'] not in docs:
+                docs.append(doc['teacher'])
+            if doc['course'] not in docs:
+                docs.append(doc['course'])
+        self.write(json_encode(docs))
+
+
 settings = {
     'static_path': os.path.join(os.path.dirname(__file__), 'static'),
     'template_path': os.path.join(os.path.dirname(__file__), 'template'),
@@ -61,6 +73,7 @@ settings = {
 application = tornado.web.Application([(r'/', Home),
                                        (r'/classroom', Classroom),
                                        (r'/curriculum', Curriculum),
+                                       (r'/Teac_Course', Teac_Course),
                                        (r'/about', About),
                                        (r'/favicon.ico', tornado.web.StaticFileHandler, dict(path=settings['static_path'])),
                                        ], debug=True, **settings
