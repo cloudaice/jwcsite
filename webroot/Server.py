@@ -48,7 +48,6 @@ class Curriculum(tornado.web.RequestHandler):
 
     def post(self):
         query_string = self.get_argument('query_string').strip()
-        print query_string
         docs = []
         cursor = db.Curriculum.find({"$or": [{'teacher': query_string}, {'course': query_string}]})
         for doc in cursor:
