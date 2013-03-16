@@ -70,7 +70,9 @@ $(document).ready(function(){
     });
 
     $('#search-button').click(function(){
-        load_course_table();
+       console.debug('hello');
+       load_course_table();
+       return false;
     });
 
 });
