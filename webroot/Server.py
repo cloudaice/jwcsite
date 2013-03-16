@@ -46,9 +46,6 @@ class Curriculum(tornado.web.RequestHandler):
     def get(self):
         self.render('curriculum.html')
 
-    def post(self):
-        pass
-
 
 class About(tornado.web.RequestHandler):
     def get(self):
