@@ -5,13 +5,24 @@ $(document).ready(function(){
             $.ajax({
                 type: 'POST',
                 url: url,
-                data: param,
+                data: {
+                    'query_string': request.term
+                },
                 dataType: 'json',
                 success: function(data){
+                    console.debug(data);
+                    response($.map(data, function(item){
+                        console.debug(item);
+                        return {
+                            label: item,
+                            value: item
+                        }
+                    }));
                 }
-                
             });
         },
-
+        minlength: 2,
+        autoFocus: true,
+        delay: 500
     });
 });
