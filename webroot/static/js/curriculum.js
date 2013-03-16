@@ -14,9 +14,7 @@ $(document).ready(function(){
                 },
                 dataType: 'json',
                 success: function(data){
-                    console.debug(data);
                     response($.map(data, function(item){
-                        console.debug(item);
                         return {
                             label: item,
                             value: item
@@ -47,7 +45,6 @@ $(document).ready(function(){
                 course_table += "<th>起止周</th>";
                 course_table += "</tr></thead>";
                 course_table += "<tbody>";
-                console.debug(data);
                 for (var i in data){
                     course_table += "<tr>";
                     course_table += "<td class='solid'>" + data[i]['course'] + "</td>";
@@ -70,9 +67,16 @@ $(document).ready(function(){
     });
 
     $('#search-button').click(function(){
-       console.debug('hello');
        load_course_table();
        return false;
     });
 
+    $('#prompt').popover({
+        placement: 'bottom',
+        title: '如何使用?',
+        content: '在搜索框中输入课程名字或者是教师名字即可以搜索到相关的课程信息',
+        trigger: 'hover',
+        delay: 0
+    });
+    //$('#prompt').popover();
 });
