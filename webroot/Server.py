@@ -54,6 +54,7 @@ class About(tornado.web.RequestHandler):
 
 class Teac_Course(tornado.web.RequestHandler):
     def post(self):
+        query_string = self.get_argument('query_string')
         docs = []
         cursor = db.Curriculum.find({}, {'teacher': 1, 'course': 1})
         for doc in cursor:
@@ -61,6 +62,9 @@ class Teac_Course(tornado.web.RequestHandler):
                 docs.append(doc['teacher'])
             if doc['course'] not in docs:
                 docs.append(doc['course'])
+        docs = filter(lambda x: query_string in x, docs)
+        if len(docs) > 8:
+            docs = docs[:8]
         self.write(json_encode(docs))
 
 
