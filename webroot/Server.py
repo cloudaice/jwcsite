@@ -5,6 +5,7 @@ sys.path.append(sys.path[0] + '/../')
 import os
 from lib import Mongo
 #import asyncmongo
+import tornado.gen
 import tornado.web
 import tornado.ioloop
 from tornado.httpserver import HTTPServer
@@ -23,11 +24,17 @@ class Classroom(tornado.web.RequestHandler):
     def get(self):
         self.render('classroom.html')
 
+    @tornado.web.asynchronous
+    @tornado.gen.engine
     def post(self):
         date = self.get_argument('date')
         build = self.get_argument('build')
         param = self.get_argument('param')
-
+        docs = yield tornado.gen.Task(self.get_data, date, build, param)
+        self.write(json_encode(docs))
+        self.finish()
+    
+    def get_data(self, date, build, param, callback=None):
         def selection(x):
             for i in param:
                 if x['status'][int(i)] != '0':
@@ -39,7 +46,7 @@ class Classroom(tornado.web.RequestHandler):
         docs = db.Jiaoshi.find({'date': date}, {'roomname': 1, 'status': 1})
         docs = filter(selection, docs)
         docs = [doc['roomname'] for doc in docs]
-        self.write(json_encode(docs))
+        callback(docs)
 
 
 class Curriculum(tornado.web.RequestHandler):
@@ -91,7 +98,7 @@ application = tornado.web.Application([(r'/', Home),
                                        (r'/Teac_Course', Teac_Course),
                                        (r'/about', About),
                                        (r'/favicon.ico', tornado.web.StaticFileHandler, dict(path=settings['static_path'])),
-                                       ], **settings
+                                       ], debug=True, **settings
                                       )
 
 if __name__ == "__main__":
