@@ -38,6 +38,15 @@ $(document).ready(function(){
             dataType: 'json',
             success: function(data){
                 var course_table = "<table class='table table-striped'>";
+                course_table += "<thead><tr>";
+                course_table += "<th>课程</th>";
+                course_table += "<th>教师</th>";
+                course_table += "<th>上课地点</th>";
+                course_table += "<th>星期</th>";
+                course_table += "<th>节次</th>";
+                course_table += "<th>起止周</th>";
+                course_table += "</tr></thead>";
+                course_table += "<tbody>";
                 console.debug(data);
                 for (var i in data){
                     course_table += "<tr>";
@@ -49,7 +58,7 @@ $(document).ready(function(){
                     course_table += "<td class='solid'>" + data[i]['startend'] + "</td>";
                     course_table +="</tr>";
                 }
-                course_table += "</table>";
+                course_table += "</tbody></table>";
                 $('#course_table').html(course_table);
             }
         });
