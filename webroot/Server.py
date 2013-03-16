@@ -91,7 +91,7 @@ application = tornado.web.Application([(r'/', Home),
                                        (r'/Teac_Course', Teac_Course),
                                        (r'/about', About),
                                        (r'/favicon.ico', tornado.web.StaticFileHandler, dict(path=settings['static_path'])),
-                                       ], debug=True, **settings
+                                       ], **settings
                                       )
 
 if __name__ == "__main__":
