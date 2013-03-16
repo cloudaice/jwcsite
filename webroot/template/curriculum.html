@@ -3,8 +3,9 @@
 {% block content %}
    <form class="well form-search">
       <input id="query-curriculum" type="text" class="input-medium search-query">
-      <button type="submit" class="btn">搜索</button>
+      <button id="search-button" type="submit" class="btn">搜索</button>
    </form>
+   <div id='course_table'></div>
 {% end %}
 {% block script %}
     <script type="text/javascript" src="/static/js/curriculum.js"></script>
