@@ -29,6 +29,15 @@ $(document).ready(function(){
         var param = {
             'query_string': $("input[id='query-curriculum']").val()
         }
+        var weekday_map = new Array();
+        weekday_map[1] = "周一";
+        weekday_map[2] = "周二";
+        weekday_map[3] = "周三";
+        weekday_map[4] = "周四";
+        weekday_map[5] = "周五";
+        weekday_map[6] = "周六";
+        weekday_map[7] = "周日";
+        //console.debug(weekday_map);
         $.ajax({
             type: 'POST',
             url: url,
@@ -50,7 +59,7 @@ $(document).ready(function(){
                     course_table += "<td class='solid'>" + data[i]['course'] + "</td>";
                     course_table += "<td class='solid'>" + data[i]['teacher'] + "</td>";
                     course_table += "<td class='solid'>" + data[i]['addr'] + "</td>";
-                    course_table += "<td class='solid'>" + data[i]['weekday'] + "</td>";
+                    course_table += "<td class='solid'>" + weekday_map[data[i]['weekday']] + "</td>";
                     course_table += "<td class='solid'>" + data[i]['section'] + "</td>";
                     course_table += "<td class='solid'>" + data[i]['startend'] + "</td>";
                     course_table +="</tr>";
