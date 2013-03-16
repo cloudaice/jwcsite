@@ -53,8 +53,15 @@ class Curriculum(tornado.web.RequestHandler):
     def get(self):
         self.render('curriculum.html')
 
+    @tornado.web.asynchronous
+    @tornado.gen.engine
     def post(self):
         query_string = self.get_argument('query_string').strip()
+        docs = yield tornado.gen.Task(self.get_data, query_string)
+        self.write(json_encode(docs))
+        self.finish()
+        
+    def get_data(self, query_string, callback=None):
         docs = []
         cursor = db.Curriculum.find({"$or": [{'teacher': query_string}, {'course': query_string}]})
         for doc in cursor:
@@ -62,7 +69,7 @@ class Curriculum(tornado.web.RequestHandler):
             del doc['classId']
             if doc not in docs:
                 docs.append(doc)
-        self.write(json_encode(docs))
+        callback(docs)
 
 
 class About(tornado.web.RequestHandler):
@@ -71,8 +78,15 @@ class About(tornado.web.RequestHandler):
 
 
 class Teac_Course(tornado.web.RequestHandler):
+    @tornado.web.asynchronous
+    @tornado.gen.engine
     def post(self):
         query_string = self.get_argument('query_string')
+        docs = yield tornado.gen.Task(self.get_data, query_string)
+        self.write(json_encode(docs))
+        self.finish()
+
+    def get_data(self, query_string, callback=None):
         docs = []
         cursor = db.Curriculum.find({}, {'teacher': 1, 'course': 1})
         for doc in cursor:
@@ -83,7 +97,7 @@ class Teac_Course(tornado.web.RequestHandler):
         docs = filter(lambda x: query_string in x, docs)
         if len(docs) > 8:
             docs = docs[:8]
-        self.write(json_encode(docs))
+        callback(docs)
 
 
 settings = {
