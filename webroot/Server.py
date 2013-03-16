@@ -42,6 +42,14 @@ class Classroom(tornado.web.RequestHandler):
         self.write(json_encode(docs))
 
 
+class Curriculum(tornado.web.RequestHandler):
+    def get(self):
+        self.render('curriculum.html')
+
+    def post(self):
+        pass
+
+
 class About(tornado.web.RequestHandler):
     def get(self):
         self.render('about.html')
@@ -55,6 +63,7 @@ settings = {
 
 application = tornado.web.Application([(r'/', Home),
                                        (r'/classroom', Classroom),
+                                       (r'/curriculum', Curriculum),
                                        (r'/about', About),
                                        (r'/favicon.ico', tornado.web.StaticFileHandler, dict(path=settings['static_path'])),
                                        ], debug=True, **settings
