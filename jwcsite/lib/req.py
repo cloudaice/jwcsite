@@ -4,7 +4,6 @@
 import requests
 import sys
 sys.append(sys.path[0] + '../')
-#import config
 
 
 class Get_html(object):
