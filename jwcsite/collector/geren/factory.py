@@ -1,4 +1,5 @@
 #-*-coding:utf-8-*-
+# @author: xianghcao<cloudaice@gmail.com>
 
 from savedb import Savedb
 from parse_geren import Geren
