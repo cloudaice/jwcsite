@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+# @author: xiangchao<cloudaice@gmail.com>
 
 """
 download student numbers to mongodb
