@@ -1,4 +1,6 @@
 #-*-coding: utf-8-*-
+# @author: xiangchao<cloudaice@gmail.com>
+
 import logging
 import logging.handlers
 import os

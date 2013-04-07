@@ -1,4 +1,6 @@
 #-*-coding: utf-8-*-
+# @author: xiangchao<cloudaice@gmail.com>
+
 import chardet
 from chardet.universaldetector import UniversalDetector
 

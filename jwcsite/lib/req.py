@@ -1,4 +1,6 @@
 #-*-coding: utf-8-*-
+# @author: xiangchao<cloudaice@gmail.com>
+
 import requests
 import sys
 sys.append(sys.path[0] + '../')
