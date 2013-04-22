@@ -12,9 +12,6 @@ from tornado.httpserver import HTTPServer
 from tornado.escape import json_encode
 from tornado.options import parse_command_line
 
-cnn = Mongo.conn()
-db = cnn['jwcsite']
-
 
 class Application(tornado.web.Application):
     def __init__(self):
@@ -34,14 +31,21 @@ class Application(tornado.web.Application):
         ]
 
         tornado.web.Application.__init__(self, handlers, **settings)
+        self.db = Mongo.conn()['jwcsite']
 
 
-class Home(tornado.web.RequestHandler):
+class BaseHandler(tornado.web.RequestHandler):
+    @property
+    def db(self):
+        return self.application.db
+
+
+class Home(BaseHandler):
     def get(self):
         self.render('home.html')
 
 
-class Classroom(tornado.web.RequestHandler):
+class Classroom(BaseHandler):
     def get(self):
         self.render('classroom.html')
 
@@ -64,13 +68,13 @@ class Classroom(tornado.web.RequestHandler):
                 return False
             return True
 
-        docs = db.Jiaoshi.find({'date': date}, {'roomname': 1, 'status': 1})
+        docs = self.db.Jiaoshi.find({'date': date}, {'roomname': 1, 'status': 1})
         docs = filter(selection, docs)
         docs = [doc['roomname'] for doc in docs]
         callback(docs)
 
 
-class Curriculum(tornado.web.RequestHandler):
+class Curriculum(BaseHandler):
     def get(self):
         self.render('curriculum.html')
 
@@ -84,7 +88,7 @@ class Curriculum(tornado.web.RequestHandler):
         
     def get_data(self, query_string, callback=None):
         docs = []
-        cursor = db.Curriculum.find({"$or": [{'teacher': query_string}, {'course': query_string}]})
+        cursor = self.db.Curriculum.find({"$or": [{'teacher': query_string}, {'course': query_string}]})
         for doc in cursor:
             del doc['_id']
             del doc['classId']
@@ -93,12 +97,12 @@ class Curriculum(tornado.web.RequestHandler):
         callback(docs)
 
 
-class About(tornado.web.RequestHandler):
+class About(BaseHandler):
     def get(self):
         self.render('about.html')
 
 
-class Teac_Course(tornado.web.RequestHandler):
+class Teac_Course(BaseHandler):
     @tornado.web.asynchronous
     @tornado.gen.coroutine
     def post(self):
@@ -109,7 +113,7 @@ class Teac_Course(tornado.web.RequestHandler):
 
     def get_data(self, query_string, callback=None):
         docs = []
-        cursor = db.Curriculum.find({}, {'teacher': 1, 'course': 1})
+        cursor = self.db.Curriculum.find({}, {'teacher': 1, 'course': 1})
         for doc in cursor:
             if doc['teacher'] not in docs:
                 docs.append(doc['teacher'])
