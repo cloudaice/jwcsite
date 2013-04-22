@@ -121,9 +121,12 @@ class Teac_Course(tornado.web.RequestHandler):
         callback(docs)
 
 
-if __name__ == "__main__":
+def main():
     parse_command_line()
     port = int(sys.argv[1])
     http_server = HTTPServer(Application())
     http_server.listen(port, '127.0.0.1')
     tornado.ioloop.IOLoop.instance().start()
+
+if __name__ == "__main__":
+    main()
