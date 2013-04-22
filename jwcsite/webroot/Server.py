@@ -16,6 +16,26 @@ cnn = Mongo.conn()
 db = cnn['jwcsite']
 
 
+class Application(tornado.web.Application):
+    def __init__(self):
+        settings = {
+            'static_path': os.path.join(os.path.dirname(__file__), 'static'),
+            'template_path': os.path.join(os.path.dirname(__file__), 'template'),
+            "debug": True
+        }
+
+        handlers = [
+            (r'/', Home),
+            (r'/classroom', Classroom),
+            (r'/curriculum', Curriculum),
+            (r'/Teac_Course', Teac_Course),
+            (r'/about', About),
+            (r'/favicon.ico', tornado.web.StaticFileHandler, dict(path=settings['static_path'])),
+        ]
+
+        tornado.web.Application.__init__(self, handlers, **settings)
+
+
 class Home(tornado.web.RequestHandler):
     def get(self):
         self.render('home.html')
@@ -101,27 +121,9 @@ class Teac_Course(tornado.web.RequestHandler):
         callback(docs)
 
 
-settings = {
-    'static_path': os.path.join(os.path.dirname(__file__), 'static'),
-    'template_path': os.path.join(os.path.dirname(__file__), 'template'),
-    "debug": True
-}
-
-
-application = tornado.web.Application([(r'/', Home),
-                                       (r'/classroom', Classroom),
-                                       (r'/curriculum', Curriculum),
-                                       (r'/Teac_Course', Teac_Course),
-                                       (r'/about', About),
-                                       (r'/favicon.ico', tornado.web.StaticFileHandler,
-                                        dict(path=settings['static_path'])),
-                                       ], **settings
-                                      )
-
-
 if __name__ == "__main__":
     parse_command_line()
     port = int(sys.argv[1])
-    http_server = HTTPServer(application)
+    http_server = HTTPServer(Application())
     http_server.listen(port, '127.0.0.1')
     tornado.ioloop.IOLoop.instance().start()
