@@ -104,6 +104,7 @@ class Teac_Course(tornado.web.RequestHandler):
 settings = {
     'static_path': os.path.join(os.path.dirname(__file__), 'static'),
     'template_path': os.path.join(os.path.dirname(__file__), 'template'),
+    "debug": True
 }
 
 
@@ -114,7 +115,7 @@ application = tornado.web.Application([(r'/', Home),
                                        (r'/about', About),
                                        (r'/favicon.ico', tornado.web.StaticFileHandler,
                                         dict(path=settings['static_path'])),
-                                       ], debug=True, **settings
+                                       ], **settings
                                       )
 
 
