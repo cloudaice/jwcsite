@@ -10,6 +10,7 @@ import tornado.web
 import tornado.ioloop
 from tornado.httpserver import HTTPServer
 from tornado.escape import json_encode
+from tornado.options import parse_command_line
 
 cnn = Mongo.conn()
 db = cnn['jwcsite']
@@ -118,6 +119,7 @@ application = tornado.web.Application([(r'/', Home),
 
 
 if __name__ == "__main__":
+    parse_command_line()
     port = int(sys.argv[1])
     http_server = HTTPServer(application)
     http_server.listen(port, '127.0.0.1')
