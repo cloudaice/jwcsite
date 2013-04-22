@@ -26,7 +26,7 @@ class Classroom(tornado.web.RequestHandler):
         self.render('classroom.html')
 
     @tornado.web.asynchronous
-    @tornado.gen.engine
+    @tornado.gen.coroutine
     def post(self):
         date = self.get_argument('date')
         build = self.get_argument('build')
@@ -55,7 +55,7 @@ class Curriculum(tornado.web.RequestHandler):
         self.render('curriculum.html')
 
     @tornado.web.asynchronous
-    @tornado.gen.engine
+    @tornado.gen.coroutine
     def post(self):
         query_string = self.get_argument('query_string').strip()
         docs = yield tornado.gen.Task(self.get_data, query_string)
@@ -80,7 +80,7 @@ class About(tornado.web.RequestHandler):
 
 class Teac_Course(tornado.web.RequestHandler):
     @tornado.web.asynchronous
-    @tornado.gen.engine
+    @tornado.gen.coroutine
     def post(self):
         query_string = self.get_argument('query_string')
         docs = yield tornado.gen.Task(self.get_data, query_string)
