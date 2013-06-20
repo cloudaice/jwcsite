@@ -1,6 +1,5 @@
 jwcsite
 =======
 
-service for student
+为哈工大在校学生提供查询空闲教室，方便自习，查询相关老师或者课程，方面蹭课。
 
-look for free classroom
